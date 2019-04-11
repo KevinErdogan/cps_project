@@ -1,9 +1,10 @@
 package itf;
 
 public interface ScreenService{
-	//observators
+	
 	public int getHeight();
 	public int getWidth();
+	
 	/*
 	 * \pre: (0 <= y && y < getHeight()) 
 	 *       && (0 <= x && x < getWidth())

@@ -7,7 +7,7 @@ package itf;
  * 		 	 			&& forall x in [O, getWidth()[, 
  * 							cellNature(x,0) == Cell.MTL
  */
-public interface EditableScreen extends ScreenService{
+public interface EditableScreenService extends ScreenService{
 
 	public boolean isPlayable();
 
