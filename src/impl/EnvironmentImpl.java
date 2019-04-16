@@ -38,6 +38,12 @@ public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentSe
 		return true;
 	}
 
+	@Override
+	public void init(EditableScreenService es) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/*@Override
 	public void init(EditableScreenService es) {
 		super.init(h, w);

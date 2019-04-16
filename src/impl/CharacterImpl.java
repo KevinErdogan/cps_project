@@ -62,9 +62,9 @@ public class CharacterImpl implements CharacterService{
 				&& screen.cellNature(wdt, hgt) != Cell.HDR) 
 			&& (screen.cellNature(wdt, hgt-1) != Cell.PLT
 			    && screen.cellNature(wdt, hgt-1) != Cell.MTL)
-			&& (screen.cellContent)
-						
-						)
+			 ) {
+			
+		}
 		
 	}
 

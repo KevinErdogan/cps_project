@@ -1,7 +1,7 @@
 package Decorator;
 
 import itf.CharacterService;
-import itf.ScreenService;
+import itf.EnvironmentService;
 
 public class CharacterDecorator implements CharacterService{
 	private CharacterService delegate;
@@ -11,7 +11,7 @@ public class CharacterDecorator implements CharacterService{
 	}
 	
 	@Override
-	public ScreenService getEnvi() {
+	public EnvironmentService getEnvi() {
 		return delegate.getEnvi();
 	}
 
@@ -26,7 +26,7 @@ public class CharacterDecorator implements CharacterService{
 	}
 
 	@Override
-	public void init(ScreenService screen, int x, int y) {
+	public void init(EnvironmentService screen, int x, int y) {
 		delegate.init(screen, x, y);
 	}
 
@@ -54,4 +54,5 @@ public class CharacterDecorator implements CharacterService{
 	public void step() {
 		delegate.step();
 	}
+
 }

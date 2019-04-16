@@ -12,7 +12,7 @@ import java.util.Set;
  * 					=> (cellNature(x,y) = Cell.EMP &&
  * 						cellNature(x,y-1) in {Cell.PLT, Cell.MTL})
  */
-public interface EnvironmentService extends ScreenService{
+public interface EnvironmentService extends EditableScreenService{
 	
 	/*
 	 * \pre: (0 <= y && y < getHeight())

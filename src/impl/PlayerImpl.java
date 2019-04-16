@@ -103,7 +103,7 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 			goDown();
 		}
 		else if( (nextMove == Move.Right)
-				 && (! ( ))
+				 
 				 
 				
 				
