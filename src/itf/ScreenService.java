@@ -22,6 +22,8 @@ public interface ScreenService{
 	public void init(int h, int w);
 	
 	/*
+	 * \pre: (0 <= y && y < getHeight()) 
+	 *       && (0 <= x && x < getWidth())
 	 * \pre: cellNature(x,y) == Cell.PLT
 	 * \post: cellNature(x,y) == Cell.HOL
 	 * \post: forall (i,j) in [O, getWidth()[ x [0, getHeight()[, 
@@ -31,13 +33,13 @@ public interface ScreenService{
 	public void dig(int x, int y);
 	
 	/*
+	 * \pre: (0 <= y && y < getHeight()) 
+	 *       && (0 <= x && x < getWidth())
 	 * \pre: cellNature(x,y) == Cell.HOL
 	 * \post: cellNature(x,y) == Cell.PLT
 	 * \post: forall (i,j) in [O, getWidth()[ x [0, getHeight()[, 
 	 * 			i != x || j != y => cellNature(i,j) == cellNature(i,j)@Pre
 	 */
 	public void fill(int x, int y);
-	
-	
-	
+		
 }

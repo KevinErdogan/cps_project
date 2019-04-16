@@ -24,70 +24,7 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 		super.init(envS, w, h);
 		this.engine = engS;
 	}
-	
-	/*
-	 
-	 * 
-	 * \post: not (getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
-	 * 			not in {Cell.LAD, Cell.HDR}
-	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 		    in {Cell.HDR, Cell.HOL, Cell.EMP}
-	 * 		  && not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre))
-	 * 		  && getEngine().getNextCommand()@Pre == Move.Right
-	 * 		  => goRight()@Pre
-	 * 
-	 * \post: not (getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
-	 * 			not in {Cell.LAD, Cell.HDR}
-	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 		    in {Cell.HDR, Cell.HOL, Cell.EMP}
-	 * 		  && not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre))
-	 * 		  && getEngine().getNextCommand()@Pre == Move.Left
-	 * 		  => goLeft()@Pre
-	 * 
-	 * \post: not (getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
-	 * 			not in {Cell.LAD, Cell.HDR}
-	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 		    in {Cell.HDR, Cell.HOL, Cell.EMP}
-	 * 		  && not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre))
-	 * 		  && getEngine().getNextCommand()@Pre == Move.Up
-	 * 		  => goUp()@Pre
-	 * 
-	 * \post: not (getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
-	 * 			not in {Cell.LAD, Cell.HDR}
-	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 		    in {Cell.HDR, Cell.HOL, Cell.EMP}
-	 * 		  && not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre))
-	 * 		  && getEngine().getNextCommand()@Pre == Move.Down
-	 * 		  => goDown()@Pre
-	 * 
-	 * \post: getEngine().getNextCommand()@Pre == Move.DigL 
-	 * 		  && ( getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 			in {Cell.MTL, Cell.PLT}
-	 * 		     || exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre) )
-	 * 		  && getEnvi().cellNature( getWdt()@Pre-1, getHgt()@Pre )@Pre
-	 * 			not in {Cell.MTL, Cell.PLT}
-	 * 		  && getEnvi().cellNature( getWdt()@Pre-1, getHgt()@Pre-1 )@Pre
-	 * 			== Cell.PLT
-	 * 		  => getEnvi().cellNature( getWdt()@Pre-1, getHgt()@Pre-1 ) == Cell.HOL
-	 * 
-	 * \post: getEngine().getNextCommand()@Pre == Move.DigR
-	 * 		  && ( getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 			in {Cell.MTL, Cell.PLT}
-	 * 		     || exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre) )
-	 * 		  && getEnvi().cellNature( getWdt()@Pre+1, getHgt()@Pre )@Pre
-	 * 			not in {Cell.MTL, Cell.PLT}
-	 * 		  && getEnvi().cellNature( getWdt()@Pre+1, getHgt()@Pre-1 )@Pre
-	 * 			== Cell.PLT
-	 * 		  => getEnvi().cellNature( getWdt()@Pre+1, getHgt()@Pre-1 ) == Cell.HOL
-	 */
-	/* \post: not (getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
-	 * 			not in {Cell.LAD, Cell.HDR}
-	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 		    in {Cell.HDR, Cell.HOL, Cell.EMP}
-	 * 		  && not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre))
-	 * 		  && getEngine().getNextCommand()@Pre == Move.Right
-	 * 		  => goRight()@Pre
-	*/
+		
 	@Override
 	public void step() {
 		Move nextMove = this.engine.getNextCommand();
@@ -97,33 +34,50 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 			(getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.HDR 
 				|| getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.HOL
 				|| getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.EMP)
-			&& ( getEnvi().hasCharacter(getWdt(), getHgt()-1) )
+			&& 
+			(getEnvi().hasCharacter(getWdt(), getHgt()-1) == false)
 		  ) 
 		{//alors on tombe
 			goDown();
 		}
-		else if( (nextMove == Move.Right)
-				 && (! ( ))
-				 
-				
-				
-				) {
+		else if(nextMove == Move.Right)
+		{
 			goRight();
 		}
-		else if(nextMove == Move.Left) {
+		else if(nextMove == Move.Left) 
+	    {
 			goLeft();
 		}
-		else if(nextMove == Move.Up) {
+		else if(nextMove == Move.Up)
+		{
 			goUp();
 		}
-		else if(nextMove == Move.Down) {
+		else if(nextMove == Move.Down)
+		{
 			goDown();
 		}
-		else if(nextMove == Move.DigL) {
-			
+		else if( (nextMove == Move.DigL)
+				 && ( (getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.MTL
+					     || getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.PLT)
+					 || getEnvi().hasCharacter(getWdt(), getHgt()-1) == true)
+				 && ( getEnvi().cellNature( getWdt()-1, getHgt()) != Cell.MTL 
+				 		 || getEnvi().cellNature( getWdt()-1, getHgt()) != Cell.PLT)
+				 && getEnvi().cellNature( getWdt()-1, getHgt()-1 ) == Cell.PLT
+			   ) 
+		{
+			getEnvi().setNature(getWdt()-1, getHgt()-1, Cell.HOL);
 		}
-		else if(nextMove == Move.DigR) {
-			
+		else if( (nextMove == Move.DigR) 
+				 && ( (getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.MTL
+			            || getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.PLT)
+				    || getEnvi().hasCharacter(getWdt(), getHgt()-1) == true)
+				 && ( getEnvi().cellNature( getWdt()+1, getHgt()) != Cell.MTL 
+		 		        || getEnvi().cellNature( getWdt()+1, getHgt()) != Cell.PLT)
+				 && getEnvi().cellNature( getWdt()+1, getHgt()-1 ) == Cell.PLT
+				)
+		
+		{
+			getEnvi().setNature( getWdt()+1, getHgt()-1, Cell.HOL);
 		}
 	}
 

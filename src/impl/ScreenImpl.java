@@ -48,5 +48,4 @@ public class ScreenImpl implements ScreenService{
 	public void fill(int x, int y) {
 		cells[x][y] = Cell.PLT;
 	}
-
 }

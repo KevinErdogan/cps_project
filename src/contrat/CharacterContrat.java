@@ -10,7 +10,7 @@ public class CharacterContrat extends CharacterDecorator{
 	}
 
 	public void checkInvariant() {
-		//TODO
+		
 	}
 	
 }

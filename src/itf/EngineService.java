@@ -6,7 +6,7 @@ import display.Display;
 
 public interface EngineService {
 	
-	public ScreenService getEnvi();
+	public EnvironmentService getEnvi();
 	public CharacterService getPlayer();
 	public Set<CharacterService> getGuards();
 	//public Set<Treasure> getTreasures();

@@ -2,8 +2,7 @@ package itf;
 /**
  * \inv: getEnvi().cellNature(getWdt(), getHgt())
  * 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR}
- * \inv: getEnvi().cellContent(getWdt(), getHgt())
- * 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR} A CORRIGER
+ * \inv: if exist Character x in getEnvi().cellContent(getWdt(), getHgt()) => x == this
  */
 public interface CharacterService {
 
@@ -24,7 +23,7 @@ public interface CharacterService {
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
 	 * 			not in {Cell.LAD, Cell.HDR}
 	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 			not in {Cell.PLT, Cell.MTL}
+	 * 			not in {Cell.PLT, Cell.MTL, Cell.LAD}
 	 * 		  && not exist Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre
 	 * 			=> getWdt() == getWdt()@Pre
 	 * \post: getWdt()@Pre != 0 
@@ -52,7 +51,7 @@ public interface CharacterService {
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
 	 * 			not in {Cell.LAD, Cell.HDR}
 	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 			not in {Cell.PLT, Cell.MTL}
+	 * 			not in {Cell.PLT, Cell.MTL, Cell.LAD}
 	 * 		  && not exist Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre
 	 * 			=> getWdt() == getWdt()@Pre
 	 * \post: getWdt()@Pre != getEnvi().getWidth()@Pre-1 

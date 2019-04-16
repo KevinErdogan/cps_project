@@ -50,7 +50,7 @@ public interface PlayerService extends CharacterService{
 	 * 		  && getEngine().getNextCommand()@Pre == Move.Down
 	 * 		  => goDown()@Pre
 	 * 
-	 * \post: getEngine().getNextCommand()@Pre == Move.DigL 
+	 * \post: getEngine().getNextCommand()@Pre == Move.DigL
 	 * 		  && ( getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
 	 * 			in {Cell.MTL, Cell.PLT}
 	 * 		     || exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre) )

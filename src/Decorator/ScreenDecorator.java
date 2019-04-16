@@ -39,4 +39,5 @@ public class ScreenDecorator implements ScreenService{
 	public void fill(int x, int y) {
 		delegate.fill(x, y);
 	}
+
 }

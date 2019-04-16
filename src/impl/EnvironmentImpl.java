@@ -5,7 +5,6 @@ import java.util.Set;
 
 
 import itf.Content;
-import itf.EditableScreenService;
 import itf.EnvironmentService;
 
 public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentService{
@@ -40,7 +39,7 @@ public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentSe
 
 	/*@Override
 	public void init(EditableScreenService es) {
-		super.init(h, w);
+		
 		
 	}*/
 

@@ -4,7 +4,6 @@ import java.util.Set;
 
 import itf.Cell;
 import itf.Content;
-import itf.EditableScreenService;
 import itf.EnvironmentService;
 
 public class EnvironmentDecorator implements EnvironmentService{
@@ -50,10 +49,24 @@ public class EnvironmentDecorator implements EnvironmentService{
 		delegate.fill(x, y);
 	}
 	
-	@Override
+	/*@Override
 	public void init(EditableScreenService es) {
-		delegate.init(es);
-		
+		delegate.init(es);	
+	}*/
+
+	@Override
+	public boolean hasCharacter(int x, int y) {
+		return delegate.hasCharacter(x, y);
+	}
+
+	@Override
+	public boolean isPlayable() {
+		return delegate.isPlayable();
+	}
+
+	@Override
+	public void setNature(int x, int y, Cell c) {
+		delegate.setNature(x, y, c);
 	}
 
 }

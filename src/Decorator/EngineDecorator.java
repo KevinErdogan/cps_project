@@ -5,8 +5,8 @@ import java.util.Set;
 import display.Display;
 import itf.CharacterService;
 import itf.EngineService;
+import itf.EnvironmentService;
 import itf.Move;
-import itf.ScreenService;
 
 public class EngineDecorator implements EngineService{
 	private EngineService delegate;
@@ -16,7 +16,7 @@ public class EngineDecorator implements EngineService{
 	}
 	
 	@Override
-	public ScreenService getEnvi() {
+	public EnvironmentService getEnvi() {
 		return delegate.getEnvi();
 	}
 
