@@ -1,16 +1,12 @@
-package contrat;
-
-import java.util.Set;
+package Decorator;
 
 import itf.Cell;
-import itf.Content;
-import itf.EnvironmentService;
+import itf.EditableScreenService;
 
-public class EnvironmentDecorator implements EnvironmentService{
-
-	private EnvironmentService delegate;
+public class EditableScreenDecorator implements EditableScreenService{
+	private EditableScreenService delegate;
 	
-	protected EnvironmentDecorator(EnvironmentService delegate) {
+	protected EditableScreenDecorator(EditableScreenService delegate) {
 		this.delegate = delegate;
 	}
 	
@@ -35,13 +31,18 @@ public class EnvironmentDecorator implements EnvironmentService{
 	}
 
 	@Override
-	public void dig(int x, int y) {
-		delegate.dig(x, y);
+	public boolean isPlayable() {
+		return delegate.isPlayable();
 	}
 
 	@Override
-	public Set<Content> cellContent(int x, int y) {
-		return delegate.cellContent(x, y);
+	public void setNature(int x, int y, Cell c) {
+		delegate.setNature(x, y, c);
+	}
+
+	@Override
+	public void dig(int x, int y) {
+		delegate.dig(x, y);
 	}
 
 	@Override

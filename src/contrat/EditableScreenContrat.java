@@ -1,5 +1,6 @@
 package contrat;
 
+import Decorator.EditableScreenDecorator;
 import itf.EditableScreenService;
 
 public class EditableScreenContrat extends EditableScreenDecorator{

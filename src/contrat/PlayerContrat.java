@@ -1,5 +1,6 @@
 package contrat;
 
+import Decorator.PlayerDecorator;
 import itf.PlayerService;
 
 public class PlayerContrat extends PlayerDecorator{

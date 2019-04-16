@@ -1,8 +1,8 @@
-package contrat;
+package Decorator;
 
 import itf.EngineService;
+import itf.EnvironmentService;
 import itf.PlayerService;
-import itf.ScreenService;
 
 public class PlayerDecorator implements PlayerService{
 	private PlayerService delegate;
@@ -11,6 +11,11 @@ public class PlayerDecorator implements PlayerService{
 		this.delegate = delegate;
 	}	
 
+	@Override
+	public void init(int w, int h, EnvironmentService envS, EngineService engS) {
+		delegate.init(w, h, envS, engS);
+	}
+	
 	@Override
 	public EngineService getEngine() {
 		return delegate.getEngine();
@@ -22,7 +27,7 @@ public class PlayerDecorator implements PlayerService{
 	}
 
 	@Override
-	public ScreenService getEnvi() {
+	public EnvironmentService getEnvi() {
 		return delegate.getEnvi();
 	}
 
@@ -37,7 +42,7 @@ public class PlayerDecorator implements PlayerService{
 	}
 
 	@Override
-	public void init(ScreenService screen, int x, int y) {
+	public void init(EnvironmentService screen, int x, int y) {
 		delegate.init(screen, x, y);
 	}
 
@@ -60,4 +65,5 @@ public class PlayerDecorator implements PlayerService{
 	public void goDown() {
 		delegate.goDown();
 	}
+
 }

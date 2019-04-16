@@ -1,5 +1,6 @@
 package contrat;
 
+import Decorator.EnvironmentDecorator;
 import itf.EnvironmentService;
 
 public class EnvironmentContrat extends EnvironmentDecorator{

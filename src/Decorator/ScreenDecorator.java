@@ -1,14 +1,14 @@
-package contrat;
+package Decorator;
 
 import itf.Cell;
-import itf.EditableScreenService;
+import itf.ScreenService;
 
-public class EditableScreenDecorator implements EditableScreenService{
-	private EditableScreenService delegate;
-	
-	protected EditableScreenDecorator(EditableScreenService delegate) {
+public class ScreenDecorator implements ScreenService{
+	private ScreenService delegate;
+
+	protected ScreenDecorator(ScreenService delegate) {
 		this.delegate = delegate;
-	}
+	}	
 	
 	@Override
 	public int getHeight() {
@@ -31,16 +31,6 @@ public class EditableScreenDecorator implements EditableScreenService{
 	}
 
 	@Override
-	public boolean isPlayable() {
-		return delegate.isPlayable();
-	}
-
-	@Override
-	public void setNature(int x, int y, Cell c) {
-		delegate.setNature(x, y, c);
-	}
-
-	@Override
 	public void dig(int x, int y) {
 		delegate.dig(x, y);
 	}
@@ -49,5 +39,4 @@ public class EditableScreenDecorator implements EditableScreenService{
 	public void fill(int x, int y) {
 		delegate.fill(x, y);
 	}
-
 }

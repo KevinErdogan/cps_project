@@ -21,7 +21,12 @@ public interface EnvironmentService extends ScreenService{
 	public Set<Content> cellContent(int x, int y);
 	
 	/*
-	 * \pre: 0 < h && 0 < w
+	 *  TODO
 	 */
-	public void init(int h, int w);
+	public void init(EditableScreenService es);
+	
+	/*
+	 * TODO
+	 */
+	public boolean hasCharacter(int x, int y);
 }

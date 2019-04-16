@@ -2,6 +2,7 @@ package impl;
 
 import itf.Cell;
 import itf.CharacterService;
+import itf.EnvironmentService;
 import itf.ScreenService;
 
 public class CharacterImpl implements CharacterService{
@@ -10,15 +11,10 @@ public class CharacterImpl implements CharacterService{
 	protected int wdt;
 	protected int hgt;
 	
-	public CharacterImpl(ScreenService screen, int x, int y) {
+	public CharacterImpl(EnvironmentService screen, int x, int y) {
 		this.init(screen, x, y);
 	}
 	
-	@Override
-	public ScreenService getEnvi() {
-		return this.screen;
-	}
-
 	@Override
 	public int getHgt() {
 		return this.hgt;
@@ -30,7 +26,7 @@ public class CharacterImpl implements CharacterService{
 	}
 
 	@Override
-	public void init(ScreenService screen, int x, int y) {
+	public void init(EnvironmentService screen, int x, int y) {
 		this.screen = screen;
 		this.wdt = x;
 		this.hgt = y;
@@ -95,4 +91,8 @@ public class CharacterImpl implements CharacterService{
 		//nothing todo 
 	}
 
+	@Override
+	public EnvironmentService getEnvi() {
+		return this.screen;
+	}
 }

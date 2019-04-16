@@ -1,4 +1,4 @@
-package contrat;
+package Decorator;
 
 import java.util.Set;
 

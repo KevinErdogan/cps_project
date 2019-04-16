@@ -4,6 +4,12 @@ public interface PlayerService extends CharacterService{
 	
 	public EngineService getEngine();
 	
+	
+	/*
+	 * \post: getEngine() == engS
+	 */
+	public void init(int w, int h, EnvironmentService envS, EngineService engS);
+	
 	/*
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
 	 * 			not in {Cell.LAD, Cell.HDR}

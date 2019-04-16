@@ -7,14 +7,14 @@ package itf;
  */
 public interface CharacterService {
 
-	public ScreenService getEnvi();
+	public EnvironmentService getEnvi();
 	public int getHgt();
 	public int getWdt();
 	
 	/*
 	 * \pre: screen.cellNature(x,y) == EMP
 	 */
-	public void init(ScreenService screen, int x, int y);
+	public void init(EnvironmentService screen, int x, int y);
 	
 	/*
 	 * \post: getHgt() == getHgt()@Pre
@@ -107,6 +107,6 @@ public interface CharacterService {
 	 */
 	public void goDown();
 	
-	public void step();
 	
+	public void step();
 }

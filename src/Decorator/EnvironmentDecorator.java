@@ -1,14 +1,19 @@
-package contrat;
+package Decorator;
+
+import java.util.Set;
 
 import itf.Cell;
-import itf.ScreenService;
+import itf.Content;
+import itf.EditableScreenService;
+import itf.EnvironmentService;
 
-public class ScreenDecorator implements ScreenService{
-	private ScreenService delegate;
+public class EnvironmentDecorator implements EnvironmentService{
 
-	protected ScreenDecorator(ScreenService delegate) {
+	private EnvironmentService delegate;
+	
+	protected EnvironmentDecorator(EnvironmentService delegate) {
 		this.delegate = delegate;
-	}	
+	}
 	
 	@Override
 	public int getHeight() {
@@ -36,7 +41,19 @@ public class ScreenDecorator implements ScreenService{
 	}
 
 	@Override
+	public Set<Content> cellContent(int x, int y) {
+		return delegate.cellContent(x, y);
+	}
+
+	@Override
 	public void fill(int x, int y) {
 		delegate.fill(x, y);
 	}
+	
+	@Override
+	public void init(EditableScreenService es) {
+		delegate.init(es);
+		
+	}
+
 }
