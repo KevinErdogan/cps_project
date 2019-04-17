@@ -2,16 +2,16 @@ package itf;
 /**
  * \inv: getEnvi().cellNature(getWdt(), getHgt())
  * 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR}
- * \inv: if exist Character x in getEnvi().cellContent(getWdt(), getHgt()) => x == this
+ * \inv: exist Character x in getEnvi().cellContent(getWdt(), getHgt()) => x = this
  */
 public interface CharacterService {
 
-	public EnvironmentService getEnvi();
+	public EnvironmentService getEnvi(); // const
 	public int getHgt();
 	public int getWdt();
 	
 	/*
-	 * \pre: screen.cellNature(x,y) == EMP
+	 * \pre: screen.cellNature(x,y) == Cell.EMP
 	 */
 	public void init(EnvironmentService screen, int x, int y);
 	

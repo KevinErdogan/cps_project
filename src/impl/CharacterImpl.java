@@ -10,8 +10,8 @@ public class CharacterImpl implements CharacterService{
 	protected int wdt;
 	protected int hgt;
 
-	public CharacterImpl(EnvironmentService screen, int x, int y) {
-		this.init(screen, x, y);
+	public CharacterImpl() {
+		
 	}
 
 	@Override

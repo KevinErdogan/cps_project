@@ -1,19 +1,14 @@
 package itf;
 
 public class Content {
-	CharacterService character;
-	Item item;
+	private CharacterService character;
+	private Item item;
 	
-	public Content(CharacterService c) {
+	public Content(CharacterService c, Item item) {
 		this.character = c;
-		this.item = null;
+		this.item = item;
 	}
 	
-	public Content(Item i) {
-		this.item = i;
-		this.character = null;
-	}
-
 	public CharacterService getCharacter() {
 		return character;
 	}
@@ -23,10 +18,10 @@ public class Content {
 	}
 	
 	public boolean isCharacter() {
-		return this.character != null;
+		return character != null;
 	}
 	
 	public boolean isItem() {
-		return this.item != null;
+		return item != null;
 	}
 }
