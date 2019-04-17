@@ -54,4 +54,5 @@ public class CharacterDecorator implements CharacterService{
 	public void step() {
 		delegate.step();
 	}
+
 }
