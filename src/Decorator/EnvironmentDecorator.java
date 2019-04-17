@@ -69,22 +69,4 @@ public class EnvironmentDecorator implements EnvironmentService{
 		delegate.setNature(x, y, c);
 	}
 
-	@Override
-	public boolean hasCharacter(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isPlayable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setNature(int x, int y, Cell c) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

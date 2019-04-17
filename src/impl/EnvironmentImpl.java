@@ -5,6 +5,7 @@ import java.util.Set;
 
 
 import itf.Content;
+import itf.EditableScreenService;
 import itf.EnvironmentService;
 
 public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentService{
@@ -37,7 +38,7 @@ public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentSe
 		return true;
 	}
 
-	@Override
+	//@Override
 	public void init(EditableScreenService es) {
 		// TODO Auto-generated method stub
 		

@@ -24,50 +24,74 @@ class MyComponent extends JComponent{
 	 */
 	private static final long serialVersionUID = -8327769893614488527L;
 	public static final int SQUARE_SIZE = 15;
-	private EnvironmentService env;
+	private EngineService engine;
 	
-	public MyComponent(int w, int h, EnvironmentService env) {
-		this.env=env;
-		setSize(w, h);
+	public MyComponent(int w, int h, EngineService engine) {
+		this.engine=engine;
+
+		javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(this);
+		setLayout(mainPaneLayout);
+		mainPaneLayout.setHorizontalGroup(
+				mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, MyComponent.SQUARE_SIZE * w, Short.MAX_VALUE)
+        );
+		mainPaneLayout.setVerticalGroup(
+				mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, MyComponent.SQUARE_SIZE * h, Short.MAX_VALUE)
+        );
+
 		setVisible(true);
 	}
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		
+		EnvironmentService env = engine.getEnvi();
+
+		/* display env */
 		for(int i =0; i < env.getWidth(); i++) {
 			for(int j =0; j < env.getHeight(); j++) {
-				
 				switch(env.cellNature(i, j)) {
 				case MTL:
-					g.setColor(Color.DARK_GRAY);
+					g.setColor(Color.gray);
 				break;
 				case HDR:
 					g.setColor(Color.cyan);
 					break;
 				case HOL:
-					g.setColor(Color.gray);
+					g.setColor(Color.orange);
 					break;
 				case LAD:
 					g.setColor(Color.yellow);
 					break;
 				case PLT:
-					g.setColor(Color.black);
+					g.setColor(Color.WHITE);
 					break;
 				default:
 					// CELL.EMP
-					g.setColor(Color.WHITE);
+					g.setColor(Color.BLACK);
 				}
 				g.fillRect(MyComponent.SQUARE_SIZE * i, MyComponent.SQUARE_SIZE * j, MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
 			
 			}
 		}
 		
+		/* display guards */
+		Set<CharacterService> guards = engine.getGuards();
+		
+		g.setColor(Color.red);
+		for(CharacterService guard : guards) {
+			g.drawOval(MyComponent.SQUARE_SIZE * guard.getWdt(), MyComponent.SQUARE_SIZE  * guard.getHgt(), MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
+		}
+		
+		/* display player */
+		CharacterService player = engine.getPlayer();
+		g.setColor(Color.white);
+		g.drawOval(MyComponent.SQUARE_SIZE  * player.getWdt(), MyComponent.SQUARE_SIZE * player.getHgt(), MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
+		
 		g.dispose();
 	}
+
 }
 
 
@@ -83,10 +107,22 @@ public class Display extends JFrame{
 		int width = e.getEnvi().getWidth();
 		int height = e.getEnvi().getHeight();
 		setTitle("Load Runner");
-		setSize(MyComponent.SQUARE_SIZE*width, MyComponent.SQUARE_SIZE * height);
-		mainPane = new MyComponent(MyComponent.SQUARE_SIZE * width, MyComponent.SQUARE_SIZE * height, e.getEnvi());
-		setContentPane(mainPane);
 		
+		setSize(width, height);
+		mainPane = new MyComponent(width, height, e);
+
+		
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pack();
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,13 +132,16 @@ public class Display extends JFrame{
 	
 	public static void main(String[] args) {
 		EnvironmentService es = new EnvironmentImpl(50, 50);
+		es.init(50, 50);
 		for(int i =0; i<50; i++)
 			es.setNature(i, 49, Cell.MTL);
-		//es.init(50, 50);
-		PlayerService player = new PlayerImpl(es, 10, 10);
+
 		Set<CharacterService> guards = new HashSet<CharacterService>();
-		guards.add(new CharacterImpl(es, 0, 20));
+		guards.add(new CharacterImpl(es, 20, 48));
+		
+		PlayerService player = new PlayerImpl(es, 10, 10);
 		EngineImpl engine = new EngineImpl(es, player, guards);
+		player.init(0, 48, es, engine);
 		engine.init();
 		for(int i =0; i < 100; i++)
 			engine.step();

@@ -48,16 +48,16 @@ public class EngineImpl implements EngineService{
 
 	@Override
 	public void step() {
-		// TODO Auto-generated method stub
-		// joueur.step()
-		// guard.step()
+		player.step();
+		for(CharacterService guard : guards) {
+			guard.step();
+		}
 
 		display.step();
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		display = new Display(this);
 
 	}
