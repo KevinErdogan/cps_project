@@ -7,6 +7,7 @@ import itf.CharacterService;
 import itf.EngineService;
 import itf.EnvironmentService;
 import itf.Move;
+import itf.PlayerService;
 
 public class EngineDecorator implements EngineService{
 	private EngineService delegate;
@@ -21,7 +22,7 @@ public class EngineDecorator implements EngineService{
 	}
 
 	@Override
-	public CharacterService getPlayer() {
+	public PlayerService getPlayer() {
 		return delegate.getPlayer();
 	}
 
@@ -46,8 +47,18 @@ public class EngineDecorator implements EngineService{
 	}
 
 	@Override
-	public void init() {
-		delegate.init();
+	public void init(EnvironmentService es, PlayerService player, Set<CharacterService> guards) {
+		delegate.init(es, player, guards);
+	}
+
+	@Override
+	public void initWithTxt(String file) {
+		delegate.initWithTxt(file);
+	}
+
+	@Override
+	public void addCommand(Move m) {
+		delegate.addCommand(m);
 	}
 
 }

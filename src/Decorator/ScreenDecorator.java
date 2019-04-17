@@ -26,8 +26,8 @@ public class ScreenDecorator implements ScreenService{
 	}
 
 	@Override
-	public void init(int h, int w) {
-		delegate.init(h, w);
+	public void init(int w, int h) {
+		delegate.init(w, h);
 	}
 
 	@Override

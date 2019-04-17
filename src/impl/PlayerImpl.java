@@ -8,10 +8,10 @@ import itf.PlayerService;
 
 public class PlayerImpl extends CharacterImpl implements PlayerService{
 
-	private EngineService engine;
+	private EngineService engine=null;
 
-	public PlayerImpl(EnvironmentService screen, int x, int y) {
-		super(screen, x, y);
+	public PlayerImpl() {
+		super();
 	}
 
 	@Override
@@ -28,6 +28,7 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 	@Override
 	public void step() {
 		Move nextMove = this.engine.getNextCommand();
+
 		if( (getEnvi().cellNature(getWdt(), getHgt()) != Cell.LAD
 				&& getEnvi().cellNature(getWdt(), getHgt()) != Cell.HDR)
 			&&

@@ -1,23 +1,32 @@
 package impl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Set;
 
 import display.Display;
+import itf.Cell;
 import itf.CharacterService;
 import itf.EngineService;
 import itf.EnvironmentService;
 import itf.Move;
+import itf.PlayerService;
 
 public class EngineImpl implements EngineService{
 	private EnvironmentService es;
-	private CharacterService player;
-	private Set<CharacterService> guards;
+	private PlayerService player;
+	private Set<CharacterService> guards;//remplacer plus tard par GuardService
 	private Display display;
+	private ArrayList<Move> commands;
 
-	public EngineImpl(EnvironmentService es, CharacterService player, Set<CharacterService> guards) {
-		this.es=es;
-		this.player=player;
-		this.guards=guards;
+	public EngineImpl() {
+		es = null;
+		player = null;
+		guards = null;
+		display = null;
+		commands = null;
 	}
 
 	@Override
@@ -26,7 +35,7 @@ public class EngineImpl implements EngineService{
 	}
 
 	@Override
-	public CharacterService getPlayer() {
+	public PlayerService getPlayer() {
 		return player;
 	}
 
@@ -42,24 +51,95 @@ public class EngineImpl implements EngineService{
 
 	@Override
 	public Move getNextCommand() {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.commands.size() != 0) {
+			return commands.remove(0);
+		}
+
+		return Move.Neutral;
+	}
+
+	public void addCommand(Move m) {
+		this.commands.add(m);
 	}
 
 	@Override
 	public void step() {
-		player.step();
-		for(CharacterService guard : guards) {
-			guard.step();
-		}
+		// TODO Auto-generated method stub
+		 player.step();
+		// guard.step()
 
 		display.step();
 	}
 
 	@Override
-	public void init() {
+	public void init(EnvironmentService es, PlayerService player, Set<CharacterService> guards) {
+		this.es=es;
+		this.player=player;
+		this.guards=guards;
 		display = new Display(this);
-
+		commands = new ArrayList<Move>();
 	}
 
+	public void initWithTxt(String file) {
+		Scanner sc = null;
+		try {
+			String workingDir = System.getProperty("user.dir");
+			String path = "";
+			path = workingDir + File.separator + "src" + File.separator + "maps" +File.separator + file;
+			System.out.println("Reading from file :"+ path);
+			File f = new File(path);
+			sc = new Scanner(f);
+			int w = sc.nextInt();
+			int h = sc.nextInt();
+			EnvironmentService envs = new EnvironmentImpl();
+			envs.init(w, h);
+			for(int y = h-1; y >= 0; y--) {
+				for(int x = 0; x < w; x++) {
+					int cellN = sc.nextInt();
+					Cell cell = null;
+					switch(cellN) {
+						case 0:
+							cell = Cell.EMP;
+							break;
+						case 1:
+							cell = Cell.PLT;
+							break;
+						case 2:
+							cell = Cell.MTL;
+							break;
+						case 3:
+							cell = Cell.LAD;
+							break;
+						case 4:
+							cell = Cell.HDR;
+							break;
+						default:
+							System.out.println("Format fichier incorrect");
+					}
+					envs.setNature(x, y, cell);
+				}
+			}
+
+			int nbGuards = sc.nextInt();
+			Set<CharacterService> lguards = null;
+			for(int i = 0; i < nbGuards; i++) {
+				int x = sc.nextInt();
+				int y = sc.nextInt();
+				//GuardService guard = new GuardImpl();
+				//guard.init...
+			}
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+
+			PlayerService pl = new PlayerImpl();
+			pl.init(x, y, envs, this);
+
+			this.init(envs, pl, lguards);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			sc.close();
+		}
+	}
 }

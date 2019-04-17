@@ -3,30 +3,37 @@ package display;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import itf.CharacterService;
+import itf.EngineService;
+import itf.Move;
 
 public class MyKeyListener implements KeyListener {
-	
-	private CharacterService player;
-	
-	public MyKeyListener(CharacterService player) {
-		this.player=player;
+
+	private EngineService engine;
+
+	public MyKeyListener(EngineService engine) {
+		this.engine=engine;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case KeyEvent.VK_Z:
-				player.goUp();
+				engine.addCommand(Move.Up);
 			break;
 			case KeyEvent.VK_S:
-				player.goDown();
+				engine.addCommand(Move.Down);
 			break;
 			case KeyEvent.VK_Q:
-				player.goLeft();
+				engine.addCommand(Move.Left);
 			break;
 			case KeyEvent.VK_D:
-				player.goDown();
+				engine.addCommand(Move.Right);
+			break;
+			case KeyEvent.VK_A:
+				engine.addCommand(Move.DigL);
+			break;
+			case KeyEvent.VK_E:
+				engine.addCommand(Move.DigR);
 			break;
 		default:
 		}

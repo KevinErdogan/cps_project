@@ -9,8 +9,10 @@ public class ScreenImpl implements ScreenService{
 	protected int width;
 	protected Cell[][] cells;
 	
-	public  ScreenImpl(int h, int w) {
-		this.init(h,w);
+	public  ScreenImpl() {
+		height = -1;
+		width = -1;
+		cells = null;
 	}
 	
 	@Override
@@ -29,12 +31,12 @@ public class ScreenImpl implements ScreenService{
 	}
 
 	@Override
-	public void init(int h, int w) {
+	public void init(int w, int h) {
 		this.height = h;
 		this.width = w;
-		this.cells = new Cell[h][w];
-		for(int i = 0; i < h; i++)
-			for(int j = 0; j < w; j++)
+		this.cells = new Cell[w][h];
+		for(int i = 0; i < w; i++)
+			for(int j = 0; j < h; j++)
 				cells[i][j] = Cell.EMP;
 	}
 

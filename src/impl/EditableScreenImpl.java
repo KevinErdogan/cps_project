@@ -5,8 +5,8 @@ import itf.EditableScreenService;
 
 public class EditableScreenImpl extends ScreenImpl implements EditableScreenService{
 
-	public EditableScreenImpl(int h, int w) {
-		super(h, w);
+	public EditableScreenImpl() {
+		super();
 	}
 
 	@Override
@@ -29,5 +29,11 @@ public class EditableScreenImpl extends ScreenImpl implements EditableScreenServ
 	public void setNature(int x, int y, Cell c) {
 		this.cells[x][y] = c;
 	}
+	
+	@Override
+	public void init(int w, int h) {
+		super.init(w, h);
+	}
+
 
 }

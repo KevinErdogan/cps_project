@@ -4,7 +4,7 @@ package itf;
 /**
  * \inv: isPlayable() <=> forall (x,y) in [O, getWidth()[ x [0, getHeight()[,
  * 						cellNature(x,y) != Cell.HOL
- * 		 	 			&& forall x in [O, getWidth()[, 
+ * 		 	 			&& forall x in [O, getWidth()[,
  * 							cellNature(x,0) == Cell.MTL
  */
 public interface EditableScreenService extends ScreenService{
@@ -19,5 +19,10 @@ public interface EditableScreenService extends ScreenService{
 	 * 			i != x || j != y => cellNature(i,j) = cellNature(i,j)@Pre
 	 */
 	public void setNature(int x, int y, Cell c);
-	
+
+	/*
+	 * \pre: 0 < h && 0 < w
+	 */
+	public void init(int w, int h);
+
 }

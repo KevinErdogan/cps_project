@@ -37,9 +37,9 @@ public interface EnvironmentService extends ScreenService{
 	 * \pre: (0 <= y && y < getHeight())
 	 * 		&& ( 0 <= x && x < getWidth())
 	 * 
-	 * \post: if exist Character C in getEnvi().cellContent(x,y) => true
+	 * \post: exist Character C in getEnvi().cellContent(x,y) => true
 	 * 
-	 * \post: if not exist Character C in getEnvi().cellContent(x,y) => false
+	 * \post: not exist Character C in getEnvi().cellContent(x,y) => false
 	 
 	public boolean hasCharacter(int x, int y);
 	*/

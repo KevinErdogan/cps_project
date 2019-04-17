@@ -15,9 +15,9 @@ class MyComponent extends JComponent{
 	 * 
 	 */
 	private static final long serialVersionUID = -8327769893614488527L;
-	public static final int SQUARE_SIZE = 15;
+	public static final int SQUARE_SIZE = 25;
 	private EngineService engine;
-	
+
 	public MyComponent(int w, int h, EngineService engine) {
 		this.engine=engine;
 
@@ -32,11 +32,11 @@ class MyComponent extends JComponent{
             .addGap(0, MyComponent.SQUARE_SIZE * h, Short.MAX_VALUE)
         );
 
-		addKeyListener(new MyKeyListener(engine.getPlayer()));
+		addKeyListener(new MyKeyListener(engine));
 		setFocusable(true);
 		setVisible(true);
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -66,23 +66,23 @@ class MyComponent extends JComponent{
 					g.setColor(Color.BLACK);
 				}
 				g.fillRect(MyComponent.SQUARE_SIZE * i, MyComponent.SQUARE_SIZE * (env.getHeight() - 1 - j), MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
-			
+
 			}
 		}
-		
+
 		/* display guards */
 		Set<CharacterService> guards = engine.getGuards();
-		
+
 		g.setColor(Color.red);
 		for(CharacterService guard : guards) {
 			g.drawOval(MyComponent.SQUARE_SIZE * guard.getWdt(), MyComponent.SQUARE_SIZE  * (env.getHeight() - 1 - guard.getHgt()), MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
 		}
-		
+
 		/* display player */
 		CharacterService player = engine.getPlayer();
 		g.setColor(Color.white);
 		g.drawOval(MyComponent.SQUARE_SIZE  * player.getWdt(), MyComponent.SQUARE_SIZE * (env.getHeight()-1 - player.getHgt()), MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
-		
+
 		g.dispose();
 	}
 

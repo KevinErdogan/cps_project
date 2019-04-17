@@ -11,7 +11,9 @@ public class CharacterImpl implements CharacterService{
 	protected int hgt;
 
 	public CharacterImpl() {
-		
+		screen = null;
+		wdt = -1;
+		hgt = -1;
 	}
 
 	@Override
@@ -63,6 +65,7 @@ public class CharacterImpl implements CharacterService{
 		{
 			this.wdt = this.wdt -1;
 		}
+
 	}
 
 
@@ -139,7 +142,7 @@ public class CharacterImpl implements CharacterService{
 		      || getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.EMP)
 			&& getEnvi().hasCharacter(getWdt(), getHgt()-1) == false)
 		{
-			this.hgt = this.hgt +1;
+			this.hgt = this.hgt -1;
 		}
 	}
 
