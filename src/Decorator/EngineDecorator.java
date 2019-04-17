@@ -1,5 +1,6 @@
 package Decorator;
 
+import java.util.List;
 import java.util.Set;
 
 import display.Display;
@@ -59,6 +60,11 @@ public class EngineDecorator implements EngineService{
 	@Override
 	public void addCommand(Move m) {
 		delegate.addCommand(m);
+	}
+
+	@Override
+	public List<Move> getCommands() {
+		return delegate.getCommands();
 	}
 
 }

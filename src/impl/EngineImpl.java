@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -53,7 +54,7 @@ public class EngineImpl implements EngineService{
 	@Override
 	public Move getNextCommand() {
 		if(this.commands.size() != 0) {
-			return commands.remove(0);
+			return commands.remove(commands.size()-1);
 		}
 
 		return Move.Neutral;
@@ -142,5 +143,10 @@ public class EngineImpl implements EngineService{
 		}finally {
 			sc.close();
 		}
+	}
+
+	@Override
+	public List<Move> getCommands() {
+		return this.commands;
 	}
 }

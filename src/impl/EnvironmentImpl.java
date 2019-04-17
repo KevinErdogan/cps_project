@@ -16,7 +16,6 @@ public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentSe
 	public EnvironmentImpl() {
 		super();
 		contents = null;
-		
 	}
 
 	@Override
