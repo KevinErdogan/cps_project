@@ -33,4 +33,6 @@ public interface EngineService {
 	 * \post: getNextCommand() == m
 	 */
 	public void addCommand(Move m);
+	
+	public void setDisplayOn(boolean displayOn);
 }

@@ -22,6 +22,7 @@ public class EngineImpl implements EngineService{
 	private Set<CharacterService> guards;//remplacer plus tard par GuardService
 	private Display display;
 	private ArrayList<Move> commands;
+	private boolean displayOn = true;
 
 	public EngineImpl() {
 		es = null;
@@ -70,7 +71,9 @@ public class EngineImpl implements EngineService{
 		 player.step();
 		// guard.step()
 
-		display.step();
+		if(displayOn) {
+			display.step();
+		}
 	}
 
 	@Override			
@@ -149,4 +152,10 @@ public class EngineImpl implements EngineService{
 	public List<Move> getCommands() {
 		return this.commands;
 	}
+
+	public void setDisplayOn(boolean displayOn) {
+		this.displayOn = displayOn;
+	}
+	
+	
 }

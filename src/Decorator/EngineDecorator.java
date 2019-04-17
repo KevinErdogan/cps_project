@@ -67,4 +67,9 @@ public class EngineDecorator implements EngineService{
 		return delegate.getCommands();
 	}
 
+	@Override
+	public void setDisplayOn(boolean displayOn) {
+		delegate.setDisplayOn(displayOn);
+	}
+
 }

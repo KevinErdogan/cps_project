@@ -8,8 +8,6 @@ import impl.EngineImpl;
 
 import itf.EngineService;
 
-
-
 public class Display extends JFrame{
 
 	/**
@@ -47,7 +45,6 @@ public class Display extends JFrame{
 	public void step() {
 		mainPane.repaint();
 	}
-
 
 	public static void main(String[] args) {
 		EngineService engine = new EngineImpl();
