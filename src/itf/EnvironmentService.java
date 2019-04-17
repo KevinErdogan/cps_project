@@ -13,7 +13,7 @@ import java.util.Set;
  * 					=> (cellNature(x,y) = Cell.EMP &&
  * 						cellNature(x,y-1) in {Cell.PLT, Cell.MTL})
  */
-public interface EnvironmentService extends ScreenService{
+public interface EnvironmentService extends EditableScreenService{
 	
 	/*
 	 * \pre: (0 <= y && y < getHeight())
@@ -24,9 +24,9 @@ public interface EnvironmentService extends ScreenService{
 	/*
 	 *  \post: forall (x,y) in [0, getWidth()[ x [0, getHeight()[,
 	 *  		cellNature(x,y) = es.cellNature(x,y)
-	 */
+	 
 	public void init(EditableScreenService es);
-	
+	*/
 	/*
 	 * \pre: 0 < h && 0 < w
 	 
@@ -40,7 +40,7 @@ public interface EnvironmentService extends ScreenService{
 	 * \post: exist Character C in getEnvi().cellContent(x,y) => true
 	 * 
 	 * \post: not exist Character C in getEnvi().cellContent(x,y) => false
-	 
+	 */
 	public boolean hasCharacter(int x, int y);
-	*/
+	
 }

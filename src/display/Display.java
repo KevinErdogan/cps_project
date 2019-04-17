@@ -1,7 +1,5 @@
 package display;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.swing.JFrame;
 
@@ -56,7 +54,11 @@ public class Display extends JFrame{
 		engine.initWithTxt("map1.txt");
 		while(true){
 			engine.step();
-			Thread.sleep(5000);
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -81,8 +81,9 @@ class MyComponent extends JComponent{
 		/* display player */
 		CharacterService player = engine.getPlayer();
 		g.setColor(Color.white);
+		g.fillOval(MyComponent.SQUARE_SIZE  * player.getWdt(), MyComponent.SQUARE_SIZE * (env.getHeight()-1 - player.getHgt()), MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
+		g.setColor(Color.BLACK);
 		g.drawOval(MyComponent.SQUARE_SIZE  * player.getWdt(), MyComponent.SQUARE_SIZE * (env.getHeight()-1 - player.getHgt()), MyComponent.SQUARE_SIZE, MyComponent.SQUARE_SIZE);
-
 		g.dispose();
 	}
 

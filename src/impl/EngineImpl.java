@@ -3,6 +3,7 @@ package impl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class EngineImpl implements EngineService{
 
 	@Override
 	public EnvironmentService getEnvi() {
-		return es;
+		return es;			
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class EngineImpl implements EngineService{
 		display.step();
 	}
 
-	@Override
+	@Override			
 	public void init(EnvironmentService es, PlayerService player, Set<CharacterService> guards) {
 		this.es=es;
 		this.player=player;
@@ -121,7 +122,7 @@ public class EngineImpl implements EngineService{
 			}
 
 			int nbGuards = sc.nextInt();
-			Set<CharacterService> lguards = null;
+			Set<CharacterService> lguards = new HashSet<CharacterService>();
 			for(int i = 0; i < nbGuards; i++) {
 				int x = sc.nextInt();
 				int y = sc.nextInt();
