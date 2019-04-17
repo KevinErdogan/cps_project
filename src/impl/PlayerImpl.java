@@ -10,8 +10,9 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 
 	private EngineService engine;
 	
-	public PlayerImpl(EnvironmentService screen, int x, int y) {
-		super(screen, x, y);
+	public PlayerImpl() {
+		super();
+		engine = null;
 	}
 
 	@Override
@@ -28,6 +29,7 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 	@Override
 	public void step() {
 		Move nextMove = this.engine.getNextCommand();
+		
 		if( (getEnvi().cellNature(getWdt(), getHgt()) != Cell.LAD 
 				&& getEnvi().cellNature(getWdt(), getHgt()) != Cell.HDR)
 			&&

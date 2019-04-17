@@ -13,6 +13,11 @@ public class Content {
 		this.item = i;
 		this.character = null;
 	}
+	
+	public Content() {//empty
+		this.item = null;
+		this.character = null;
+	}
 
 	public CharacterService getCharacter() {
 		return character;

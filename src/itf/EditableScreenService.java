@@ -20,7 +20,9 @@ public interface EditableScreenService extends ScreenService{
 	 */
 	public void setNature(int x, int y, Cell c);
 	
-	
-	
+	/*
+	 * \pre: 0 < h && 0 < w
+	 */
+	public void init(int w, int h);
 	
 }

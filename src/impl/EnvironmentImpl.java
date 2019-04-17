@@ -12,9 +12,10 @@ public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentSe
 	
 	protected Set<Content>[][] contents;
 	
-	public EnvironmentImpl(int h, int w) {
-		super(h, w);
-		this.init(h, w);
+	public EnvironmentImpl() {
+		super();
+		contents = null;
+		
 	}
 
 	@Override
@@ -24,17 +25,21 @@ public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentSe
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void init(int h, int w) {
-		super.init(h, w);
+	public void init(int w, int h) {
+		super.init(w, h);
 		contents = (HashSet<Content>[][]) new HashSet[w][h]; //new HashSet<Content>[h][w];
+		for(int x = 0; x < w; x++)
+			for(int y = 0; y < h; y++)
+				contents[x][y] = new HashSet<Content>();
 	}
 	
 	public boolean hasCharacter(int x, int y) {
-		for(Content c : contents[x][y]) {
+		HashSet<Content> content = (HashSet<Content>) contents[x][y];
+		for(Content c : content) {
 			if(c.isCharacter())
-				return false;
+				return true;
 		}
-		return true;
+		return false;
 	}
 
 	/*@Override

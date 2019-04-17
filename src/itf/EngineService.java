@@ -7,12 +7,22 @@ import display.Display;
 public interface EngineService {
 	
 	public EnvironmentService getEnvi();
-	public CharacterService getPlayer();
+	public PlayerService getPlayer();
 	public Set<CharacterService> getGuards();
 	//public Set<Treasure> getTreasures();
 	public Display getStatus();
 	public Move getNextCommand();
 	
 	public void step();
-	public void init();
+	public void init(EnvironmentService es, PlayerService player, Set<CharacterService> guards);
+	
+	/*
+	 * TODO
+	 */
+	public void initWithTxt(String file);
+	
+	/*
+	 * TODO
+	 */
+	public void addCommand(Move m);
 }

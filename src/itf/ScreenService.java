@@ -19,7 +19,7 @@ public interface ScreenService{
 	 * \post: forall (x,y) in [O, getWidth()[ x [0, getHeight()[, 
 	 * 			cellNature(x,y) == Cell.EMP
 	 */
-	public void init(int h, int w);
+	public void init(int w, int h);
 	
 	/*
 	 * \pre: (0 <= y && y < getHeight()) 
