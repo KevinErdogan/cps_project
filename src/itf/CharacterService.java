@@ -1,17 +1,24 @@
 package itf;
 /**
  * \inv: getEnvi().cellNature(getWdt(), getHgt())
- * 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR}
+ * 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR, Cell.DOR}
  * \inv: exist Character x in getEnvi().cellContent(getWdt(), getHgt()) => x = this
  */
 public interface CharacterService {
 
-	public EnvironmentService getEnvi(); // const
+	public EnvironmentService getEnvi(); 
 	public int getHgt();
 	public int getWdt();
+	public int getInitialHgt();
+	public int getInitialWdt();
 	
 	/*
 	 * \pre: screen.cellNature(x,y) == Cell.EMP
+	 * \post: getWdt() = x
+	 * \post: getHgt() = y
+	 * \post: getInitialWdt() = x
+	 * \post: getInitialHgt() = y
+
 	 */
 	public void init(EnvironmentService screen, int x, int y);
 	
@@ -35,9 +42,9 @@ public interface CharacterService {
 	 * 				 in {Cell.PLT, Cell.MTL, Cell.LAD}
 	 * 			  || exist Character c in
 	 * 				 getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre )
-	 *        && not (exist Character c in 
-	 *        			getEnvi().cellContent( getWdt()@Pre-1, getHgt()@Pre )@Pre )
 	 *        => getWdt() == getWdt()@Pre -1
+	 *       		&& not exist this in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre )
+	 *        		&& exist this in getEnvi().cellContent( getWdt(), getHgt() )
 	 */
 	public void goLeft();
 	
@@ -63,9 +70,9 @@ public interface CharacterService {
 	 * 				 in {Cell.PLT, Cell.MTL, Cell.LAD}
 	 * 			  || exist Character c in
 	 * 				 getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre )
-	 *        && not ( exist Character c in 
-	 *        			getEnvi().cellContent( getWdt()@Pre+1, getHgt()@Pre )@Pre )
 	 *        => getWdt() == getWdt()@Pre +1
+	 *        		&& not exist this in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre )
+	 *        		&& exist this in getEnvi().cellContent( getWdt(), getHgt() )
 	 */
 	public void goRight();
 	
@@ -77,16 +84,16 @@ public interface CharacterService {
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
 	 * 			not in {Cell.LAD}
 	 * 		  || getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre+1 )@Pre
-	 * 			not in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP}
-	 * 		  || exist Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre+1 )@Pre
+	 * 			not in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP, Cell.DOR}
 	 * 		  => getHgt() == getHgt()@Pre
 	 * 
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
 	 * 			in {Cell.LAD}
 	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre+1 )@Pre
-	 * 			in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP}
-	 * 		  &&  not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre+1 )@Pre)
+	 * 			in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP, Cell.DOR}
 	 * 		  => getHgt() == getHgt()@Pre+1
+	 * 				&& not exist this in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre )
+	 *        		&& exist this in getEnvi().cellContent( getWdt(), getHgt() )
 	 */
 	public void goUp();
 	
@@ -95,17 +102,32 @@ public interface CharacterService {
 	 * \post: getHgt()@Pre == 0 => getHgt() == getHgt()@Pre
 	 * 
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 			not in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP}
-	 * 		  || exist Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre
+	 * 			not in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP, Cell.DOR}
 	 * 		  => getHgt() == getHgt()@Pre
 	 * 
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 			in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP}
-	 *        && not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre)
-	 *        => getHgt() == getHgt()@Pre-1
+	 * 			in {Cell.HOL, Cell.LAD, Cell.HDR, Cell.EMP, Cell.DOR}
+	 *        => getHgt() == getHgt()@Pre-1 
+	 *        		&& not exist this in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre )
+	 *        		&& exist this in getEnvi().cellContent( getWdt(), getHgt() )
 	 */
 	public void goDown();
 	
 	
 	public void step();
+	
+	
+	public void die();
+	
+	
+	public void reset();
+	
+	
+	public void setXandInitialX(int x);
+	
+	
+	public void setYandInitialY(int y);
+	
+	
+	
 }

@@ -3,15 +3,35 @@ package Decorator;
 import java.util.Set;
 
 import itf.Cell;
+import itf.CharacterService;
 import itf.Content;
 import itf.EnvironmentService;
+import itf.Item;
 
 public class EnvironmentDecorator implements EnvironmentService{
 
 	private EnvironmentService delegate;
-	
+
 	protected EnvironmentDecorator(EnvironmentService delegate) {
 		this.delegate = delegate;
+	}
+	
+	
+	public void getOut(CharacterService c, int x, int y) {
+		delegate.getOut(c, x, y);
+	}
+
+	public void getIn(CharacterService c, int x, int y) {
+		delegate.getIn(c, x, y);
+	}
+	
+	public void getOut(Item i, int x, int y) {
+		delegate.getOut(i, x, y);
+	}
+
+
+	public void getIn(Item i, int x, int y) {
+		delegate.getIn(i, x, y);
 	}
 	
 	@Override
@@ -68,5 +88,16 @@ public class EnvironmentDecorator implements EnvironmentService{
 	public void setNature(int x, int y, Cell c) {
 		delegate.setNature(x, y, c);
 	}
+
+
+	public boolean hasItem(int x, int y) {
+		return delegate.hasItem(x, y);
+	}
+
+
+	public Item getItem(int x, int y) {
+		return delegate.getItem(x, y);
+	}
+
 
 }

@@ -5,6 +5,7 @@ public enum Cell {
 	PLT,//plateforme
 	HOL,//trou
 	LAD,//echelle
+	DOR,//porte
 	HDR,//rail
 	MTL;//metal
 }

@@ -17,13 +17,14 @@ public class CharacterContrat extends CharacterDecorator{
 	public void checkInvariant() {
 		
 		 // \inv: getEnvi().cellNature(getWdt(), getHgt())
-		 // 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR}
-		 // \inv: if exist Character x in getEnvi().cellContent(getWdt(), getHgt()) => x == this
+		 // 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR, Cell.DOR}
+		//exist Character x in getEnvi().cellContent(getWdt(), getHgt()) => x = this
 		 
 		if(! (getEnvi().cellNature(getWdt(), getHgt()) == Cell.EMP
 				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.HOL
 				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.LAD
-				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.HDR)) 
+				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.HDR
+				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.DOR)) 
 		{
 			throw new InvariantError("Le Character n'est pas dans une case libre (vide, trou, echelle ou rail)");
 		}
@@ -67,7 +68,6 @@ public class CharacterContrat extends CharacterDecorator{
 		Cell cellNatWH_atPre = getEnvi().cellNature(getWdt(), getHgt());
 		Cell cellNatWH_1_atPre = getEnvi().cellNature(getWdt(), getHgt()-1);
 		boolean hasCharacWH_1_atPre = getEnvi().hasCharacter(getWdt(), getHgt()-1);
-		boolean hasCharacW_1H_atPre = getEnvi().hasCharacter(getWdt()-1, getHgt());
 		
 		checkInvariant();
 		
@@ -137,8 +137,7 @@ public class CharacterContrat extends CharacterDecorator{
 						   || cellNatWH_atPre == Cell.MTL
 						   || cellNatWH_atPre == Cell.LAD)
 						|| hasCharacWH_1_atPre == true)
-					&& hasCharacW_1H_atPre == false)
-				&& getWdt() == wdt_atPre-1)) {
+				    && getWdt() == wdt_atPre-1))) {
 			throw new PostconditionError("Deplacement a gauche non effectue");
 		}	
 	}
@@ -153,7 +152,6 @@ public class CharacterContrat extends CharacterDecorator{
 		Cell cellNatWH_atPre = getEnvi().cellNature(getWdt(), getHgt());
 		Cell cellNatWH_1_atPre = getEnvi().cellNature(getWdt(), getHgt()-1);
 		boolean hasCharacWH_1_atPre = getEnvi().hasCharacter(getWdt(), getHgt()-1);
-		boolean hasCharacWp1H_atPre = getEnvi().hasCharacter(getWdt()+1, getHgt());
 		
 		checkInvariant();
 		
@@ -224,8 +222,7 @@ public class CharacterContrat extends CharacterDecorator{
 			             || cellNatWH_1_atPre == Cell.MTL
 			             || cellNatWH_1_atPre == Cell.LAD)
 			        || hasCharacWH_1_atPre == true)
-			   && hasCharacWp1H_atPre == false
-			   && getWdt() == wdt_atPre+1) ) {
+			   && getWdt() == wdt_atPre+1)) {
 			throw new PostconditionError("Deplacement a droite non effectue");
 		}
 	}
@@ -238,7 +235,6 @@ public class CharacterContrat extends CharacterDecorator{
 		int envHeight_atPre = getEnvi().getHeight();
 		Cell cellNatWH_atPre = getEnvi().cellNature(getWdt(), getHgt());
 		Cell cellNatWHp1_atPre = getEnvi().cellNature(getWdt(), getHgt()+1);
-		boolean hasCharacWHp1_atPre = getEnvi().hasCharacter(getWdt(), getHgt()+1);
 		
 		checkInvariant();
 		
@@ -267,12 +263,12 @@ public class CharacterContrat extends CharacterDecorator{
 		 // 		  || exist Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre+1 )@Pre
 		 // 		  => getHgt() == getHgt()@Pre
 		
-		if(! ( (cellNatWH_atPre != Cell.LAD
+		if(!  (cellNatWH_atPre != Cell.LAD
 			   || (cellNatWHp1_atPre != Cell.HOL
 			       && cellNatWHp1_atPre != Cell.LAD
 			       && cellNatWHp1_atPre != Cell.HDR
-			       && cellNatWHp1_atPre != Cell.EMP)
-			   || hasCharacWHp1_atPre == true)
+			       && cellNatWHp1_atPre != Cell.EMP
+			       && cellNatWHp1_atPre != Cell.DOR)
 			   && getHgt() == hgt_atPre)) {
 			throw new PostconditionError("Deplacement en haut impossible");
 		}
@@ -284,12 +280,12 @@ public class CharacterContrat extends CharacterDecorator{
 		 // 		  &&  not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre+1 )@Pre)
 		 // 		  => getHgt() == getHgt()@Pre+1
 		 
-		if(! ( (cellNatWH_atPre == Cell.LAD
+		if(!  (cellNatWH_atPre == Cell.LAD
 				&& (cellNatWHp1_atPre == Cell.HOL
 			       || cellNatWHp1_atPre == Cell.LAD
 			       || cellNatWHp1_atPre == Cell.HDR
-			       || cellNatWHp1_atPre == Cell.EMP)
-				&& hasCharacWHp1_atPre == false)
+			       || cellNatWHp1_atPre == Cell.EMP
+			       || cellNatWHp1_atPre == Cell.DOR)
 				&& getHgt() == hgt_atPre+1)) {
 			throw new PostconditionError("Deplacement en haut non effectue");
 		}	
@@ -301,7 +297,6 @@ public class CharacterContrat extends CharacterDecorator{
 		int hgt_atPre = getHgt();
 		int wdt_atPre = getWdt();
 		Cell cellNatWH_1_atPre = getEnvi().cellNature(getWdt(), getHgt()-1);
-		boolean hasCharacWH_1_atPre = getEnvi().hasCharacter(getWdt(), getHgt()-1);
 		
 		checkInvariant();
 		
@@ -328,11 +323,11 @@ public class CharacterContrat extends CharacterDecorator{
 		 // 		  || exist Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre
 		 // 		  => getHgt() == getHgt()@Pre
 		
-		if(! ( ((cellNatWH_1_atPre != Cell.HOL
+		if(! ( (cellNatWH_1_atPre != Cell.HOL
 				 && cellNatWH_1_atPre != Cell.LAD
 				 && cellNatWH_1_atPre != Cell.HDR
-				 && cellNatWH_1_atPre != Cell.EMP)
-			  || hasCharacWH_1_atPre == true)
+				 && cellNatWH_1_atPre != Cell.EMP
+				 && cellNatWH_1_atPre != Cell.DOR)
 			  && getHgt() == hgt_atPre)) {
 			throw new PostconditionError("Deplacement en bas impossible");
 		}
@@ -345,8 +340,8 @@ public class CharacterContrat extends CharacterDecorator{
 		if(! ( (cellNatWH_1_atPre == Cell.HOL
 				 || cellNatWH_1_atPre == Cell.LAD
 				 || cellNatWH_1_atPre == Cell.HDR
-				 || cellNatWH_1_atPre == Cell.EMP)
-				&& hasCharacWH_1_atPre == false
+				 || cellNatWH_1_atPre == Cell.EMP
+				 || cellNatWH_1_atPre == Cell.DOR)
 				&& getHgt() == hgt_atPre-1) ){
 			throw new PostconditionError("Deplacement en bas non effectue");	
 		}

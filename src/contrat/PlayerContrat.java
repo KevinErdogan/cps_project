@@ -4,6 +4,7 @@ import Decorator.PlayerDecorator;
 import itf.Cell;
 import itf.EngineService;
 import itf.EnvironmentService;
+import itf.HoleService;
 import itf.Move;
 import itf.PlayerService;
 
@@ -130,8 +131,10 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 		  && getEnvi().cellNature( getWdt()@Pre-1, getHgt()@Pre-1 )@Pre
 		 // 			== Cell.PLT
 		 // 		  => getEnvi().cellNature( getWdt()@Pre-1, getHgt()@Pre-1 ) == Cell.HOL
+		 //				&& getEngine().getHoles() contains h with h.getX() == getWdt()@Pre-1 && h.getY() == getHgt()@Pre-1
 		
 		if(! (nextCommand_AtPre == Move.DigL
+			  && wdt_atPre != 0
 			  && ((cellNatWH_1_atPre == Cell.MTL
 			         || cellNatWH_1_atPre == Cell.PLT)
 			  	  || hasCharacWH_1_atPre == true)
@@ -139,7 +142,16 @@ public class PlayerContrat extends PlayerDecorator{
 			      && cellNatW_1H_atPre != Cell.PLT)
 			  && cellNatW_1H_1_atPre == Cell.PLT
 			  && getEnvi().cellNature(wdt_atPre -1, hgt_atPre-1) == Cell.HOL)) {
-			throw new PostconditionError("erreur commande creuser a gauche");
+			
+			boolean found = false;
+			for(HoleService h : getEngine().getHoles()) {
+				if(h.getX() == wdt_atPre -1 && h.getY() == hgt_atPre-1) {
+					found = true;
+					break;
+				}
+			}
+			if(! found)
+				throw new PostconditionError("erreur commande creuser a gauche");
 		}
 		  
 		 // \post: getEngine().getNextCommand()@Pre == Move.DigR
@@ -151,8 +163,10 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 		  && getEnvi().cellNature( getWdt()@Pre+1, getHgt()@Pre-1 )@Pre
 		 // 			== Cell.PLT
 		 // 		  => getEnvi().cellNature( getWdt()@Pre+1, getHgt()@Pre-1 ) == Cell.HOL
+		 //              && getEngine().getHoles() contains h with h.getX() == getWdt()@Pre+1 && h.getY() == getHgt()@Pre-1
 		
 		if(! (nextCommand_AtPre == Move.DigR
+				  && wdt_atPre != getEnvi().getWidth()-1
 				  && ((cellNatWH_1_atPre == Cell.MTL
 				         || cellNatWH_1_atPre == Cell.PLT)
 				  	  || hasCharacWH_1_atPre == true)
@@ -160,6 +174,15 @@ public class PlayerContrat extends PlayerDecorator{
 				      && cellNatWp1H_atPre != Cell.PLT)
 				  && cellNatWp1H_1_atPre == Cell.PLT
 				  && getEnvi().cellNature(wdt_atPre +1, hgt_atPre-1) == Cell.HOL)) {
+			
+			boolean found = false;
+			for(HoleService h : getEngine().getHoles()) {
+				if(h.getX() == wdt_atPre +1 && h.getY() == hgt_atPre-1) {
+					found = true;
+					break;
+				}
+			}
+			if(! found)
 				throw new PostconditionError("erreur commande creuser a droite");
 			}
 	}

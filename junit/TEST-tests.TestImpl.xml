@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="1" hostname="firat" name="tests.TestImpl" skipped="0" tests="3" time="0.805" timestamp="2019-04-17T17:34:15">
+  <properties>
+    <property name="ant.library.dir" value="/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324/lib" />
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+    <property name="java.specification.version" value="11" />
+    <property name="ant.project.name" value="cps_project" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="debuglevel" value="source,lines,vars" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="env.TEXTDOMAINDIR" value="/usr/share/locale/" />
+    <property name="env.TEXTDOMAIN" value="im-config" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tests.TestImpl skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/firat/CPS/cps_project/junit/TEST-tests.TestImpl.xml crashfile=/home/firat/CPS/cps_project/junitvmwatcher11963229954216783451.properties propsfile=/home/firat/CPS/cps_project/junit473406910509350223.properties" />
+    <property name="jdk.debug" value="release" />
+    <property name="env.SSH_AGENT_PID" value="2149" />
+    <property name="eclipse.pdebuild.templates" value="/home/firat/eclipse/jee-2018-09/eclipse/../../../.p2/pool/plugins/org.eclipse.pde.build_3.10.100.v20180828-1915/templates" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.version.date" value="2019-01-15" />
+    <property name="env.GDMSESSION" value="ubuntu" />
+    <property name="java.home" value="/usr/lib/jvm/java-11-openjdk-amd64" />
+    <property name="env.GDK_CORE_DEVICE_EVENTS" value="1" />
+    <property name="basedir" value="/home/firat/CPS/cps_project" />
+    <property name="file.separator" value="/" />
+    <property name="java.vm.compressedOopsMode" value="Zero based" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="env.MANAGERPID" value="2016" />
+    <property name="env.GNOME_DESKTOP_SESSION_ID" value="this-is-deprecated" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="java.runtime.version" value="11.0.2+9-Ubuntu-3ubuntu118.04.3" />
+    <property name="user.name" value="firat" />
+    <property name="env.PATH" value="/home/firat/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin" />
+    <property name="env.LOGNAME" value="firat" />
+    <property name="env.XDG_SEAT" value="seat0" />
+    <property name="env.CLUTTER_IM_MODULE" value="xim" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="env.DBUS_STARTER_BUS_TYPE" value="session" />
+    <property name="env.XDG_VTNR" value="2" />
+    <property name="env._" value="/usr/bin/dbus-update-activation-environment" />
+    <property name="env.SHLVL" value="0" />
+    <property name="env.XDG_SESSION_DESKTOP" value="ubuntu" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.version" value="11.0.2" />
+    <property name="env.SSH_AUTH_SOCK" value="/run/user/1000/keyring/ssh" />
+    <property name="env.XDG_RUNTIME_DIR" value="/run/user/1000" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="env.XMODIFIERS" value="@im=ibus" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="ant.home" value="/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="junit.output.dir" value="junit" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.5 compiled on July 10 2018" />
+    <property name="eclipse.pdebuild.scripts" value="/home/firat/eclipse/jee-2018-09/eclipse/../../../.p2/pool/plugins/org.eclipse.pde.build_3.10.100.v20180828-1915/scripts" />
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib" />
+    <property name="env.WINDOWPATH" value="2" />
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="env.XDG_SESSION_TYPE" value="x11" />
+    <property name="env.IM_CONFIG_PHASE" value="2" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="env.XAUTHORITY" value="/run/user/1000/gdm/Xauthority" />
+    <property name="sun.desktop" value="gnome" />
+    <property name="env.PWD" value="/home/firat" />
+    <property name="env.SESSION_MANAGER" value="local/firat:@/tmp/.ICE-unix/2054,unix/firat:/tmp/.ICE-unix/2054" />
+    <property name="env.LANG" value="fr_FR.UTF-8" />
+    <property name="env.OXYGEN_DISABLE_INNER_SHADOWS_HACK" value="1" />
+    <property name="java.class.path" value="/home/firat/CPS/cps_project/build/classes:/home/firat/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar:/home/firat/.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar:/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324/lib/ant-launcher.jar:/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324/lib/ant.jar:/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324/lib/ant-junit.jar:/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324/lib/ant-junit4.jar" />
+    <property name="env.HOME" value="/home/firat" />
+    <property name="source" value="1.8" />
+    <property name="env.QT_IM_MODULE" value="xim" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="ant.file.type.cps_project" value="file" />
+    <property name="env.XDG_DATA_DIRS" value="/usr/share/ubuntu:/usr/local/share:/usr/share:/var/lib/snapd/desktop" />
+    <property name="user.timezone" value="" />
+    <property name="os.name" value="Linux" />
+    <property name="java.vm.specification.version" value="11" />
+    <property name="env.DISPLAY" value=":0" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="user.country" value="FR" />
+    <property name="env.QT_ACCESSIBILITY" value="1" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="env.JOURNAL_STREAM" value="9:28395" />
+    <property name="user.home" value="/home/firat" />
+    <property name="env.DBUS_STARTER_ADDRESS" value="unix:path=/run/user/1000/bus,guid=276693dac9eac174eabe248e5cb1ba81" />
+    <property name="user.language" value="fr" />
+    <property name="eclipse.pdebuild.home" value="/home/firat/eclipse/jee-2018-09/eclipse/../../../.p2/pool/plugins/org.eclipse.pde.build_3.10.100.v20180828-1915/." />
+    <property name="env.INVOCATION_ID" value="cb8f9f1ae37641af9a383352d005b88d" />
+    <property name="env.GPG_AGENT_INFO" value="/run/user/1000/gnupg/S.gpg-agent:0:1" />
+    <property name="ant.java.version" value="11" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="env.GTK_IM_MODULE" value="ibus" />
+    <property name="env.ANT_HOME" value="/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324" />
+    <property name="env.XDG_MENU_PREFIX" value="gnome-" />
+    <property name="env.DBUS_SESSION_BUS_ADDRESS" value="unix:path=/run/user/1000/bus,guid=276693dac9eac174eabe248e5cb1ba81" />
+    <property name="ant.file" value="/home/firat/CPS/cps_project/build.xml" />
+    <property name="path.separator" value=":" />
+    <property name="os.version" value="4.15.0-47-generic" />
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
+    <property name="ant.file.cps_project" value="/home/firat/CPS/cps_project/build.xml" />
+    <property name="env.XDG_SESSION_ID" value="2" />
+    <property name="ant.project.invoked-targets" value="TestImpl" />
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
+    <property name="ECLIPSE_HOME" value="../../eclipse/jee-2018-09/eclipse/" />
+    <property name="env.SHELL" value="/bin/bash" />
+    <property name="env.GTK_MODULES" value="gail:atk-bridge" />
+    <property name="ant.core.lib" value="/home/firat/.p2/pool/plugins/org.apache.ant_1.10.5.v20180808-0324/lib/ant.jar" />
+    <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/" />
+    <property name="env.XDG_CONFIG_DIRS" value="/etc/xdg/xdg-ubuntu:/etc/xdg" />
+    <property name="user.dir" value="/home/firat/CPS/cps_project" />
+    <property name="os.arch" value="amd64" />
+    <property name="env.USERNAME" value="firat" />
+    <property name="env.QT4_IM_MODULE" value="xim" />
+    <property name="target" value="1.8" />
+    <property name="env.XDG_CURRENT_DESKTOP" value="ubuntu:GNOME" />
+    <property name="env.DESKTOP_SESSION" value="ubuntu" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
+    <property name="java.vm.version" value="11.0.2+9-Ubuntu-3ubuntu118.04.3" />
+    <property name="env.LIBOVERLAY_SCROLLBAR" value="0" />
+    <property name="env.USER" value="firat" />
+    <property name="env.GNOME_SHELL_SESSION_MODE" value="ubuntu" />
+    <property name="java.class.version" value="55.0" />
+    <property name="ant.project.default-target" value="build" />
+  </properties>
+  <testcase classname="tests.TestImpl" name="testMoveWhenFalling" time="0.451" />
+  <testcase classname="tests.TestImpl" name="testDigWhenOnHandRail" time="0.017" />
+  <testcase classname="tests.TestImpl" name="testFallWhenInHOL" time="0.06">
+    <failure message="testFallWhenInHOL failed, le joueur n&apos;est pas tombe" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: testFallWhenInHOL failed, le joueur n&apos;est pas tombe
+	at tests.TestImpl.testFallWhenInHOL(TestImpl.java:126)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+</failure>
+  </testcase>
+  <system-out><![CDATA[Reading from file :/home/firat/CPS/cps_project/src/maps/map1.txt
+Reading from file :/home/firat/CPS/cps_project/src/maps/map1.txt
+Reading from file :/home/firat/CPS/cps_project/src/maps/map1.txt
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

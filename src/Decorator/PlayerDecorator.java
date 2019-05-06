@@ -2,12 +2,14 @@ package Decorator;
 
 import itf.EngineService;
 import itf.EnvironmentService;
+import itf.Item;
 import itf.PlayerService;
 
-public class PlayerDecorator implements PlayerService{
+public class PlayerDecorator extends CharacterDecorator implements PlayerService{
 	private PlayerService delegate;
 
 	protected PlayerDecorator(PlayerService delegate) {
+		super(delegate);
 		this.delegate = delegate;
 	}	
 
@@ -27,43 +29,43 @@ public class PlayerDecorator implements PlayerService{
 	}
 
 	@Override
-	public EnvironmentService getEnvi() {
-		return delegate.getEnvi();
+	public int getNbTreasure() {
+		return delegate.getNbTreasure();
 	}
 
-	@Override
-	public int getHgt() {
-		return delegate.getHgt();
+	public void die() {
+		delegate.die();
 	}
 
-	@Override
-	public int getWdt() {
-		return delegate.getWdt();
+	public void pickUpTreasure() {
+		delegate.pickUpTreasure();
+	}
+	
+	public int getHP() {
+		return delegate.getHP();
 	}
 
-	@Override
-	public void init(EnvironmentService screen, int x, int y) {
-		delegate.init(screen, x, y);
+	public boolean hasKey() {
+		return delegate.hasKey();
 	}
 
-	@Override
-	public void goLeft() {
-		delegate.goLeft();
+	public void pickUpKey(Item k) {
+		delegate.pickUpKey(k);
 	}
 
-	@Override
-	public void goRight() {
-		delegate.goRight();
+	public Item getKey() {
+		return delegate.getKey();
+	}
+	
+	public void resetNbTreasure() {
+		delegate.resetNbTreasure();
 	}
 
-	@Override
-	public void goUp() {
-		delegate.goUp();
+	public void resetKey() {
+		delegate.resetKey();
 	}
 
-	@Override
-	public void goDown() {
-		delegate.goDown();
+	public void resetHP() {
+		delegate.resetHP();
 	}
-
 }

@@ -7,12 +7,18 @@ import display.Display;
 import itf.CharacterService;
 import itf.EngineService;
 import itf.EnvironmentService;
+import itf.GameState;
+import itf.GuardService;
+import itf.HoleService;
+import itf.Item;
 import itf.Move;
 import itf.PlayerService;
 
 public class EngineDecorator implements EngineService{
 	private EngineService delegate;
 	
+	
+
 	protected EngineDecorator(EngineService delegate) {
 		this.delegate = delegate;
 	}
@@ -28,7 +34,7 @@ public class EngineDecorator implements EngineService{
 	}
 
 	@Override
-	public Set<CharacterService> getGuards() {
+	public Set<GuardService> getGuards() {
 		return delegate.getGuards();
 	}
 
@@ -48,13 +54,24 @@ public class EngineDecorator implements EngineService{
 	}
 
 	@Override
-	public void init(EnvironmentService es, PlayerService player, Set<CharacterService> guards) {
-		delegate.init(es, player, guards);
+	public void init(EnvironmentService es, PlayerService player, Set<GuardService> guards, Set<Item> treasures,
+			Item key) {
+		delegate.init(es, player, guards, treasures, key);
 	}
 
 	@Override
-	public void initWithTxt(String file) {
-		delegate.initWithTxt(file);
+	public void initMap1() {
+		delegate.initMap1();
+	}
+	
+	@Override
+	public void initMap2() {
+		delegate.initMap2();
+	}
+	
+	@Override
+	public void initMap3() {
+		delegate.initMap3();
 	}
 
 	@Override
@@ -72,4 +89,36 @@ public class EngineDecorator implements EngineService{
 		delegate.setDisplayOn(displayOn);
 	}
 
+	@Override
+	public Set<Item> getTreasures() {
+		return delegate.getTreasures();
+	}
+
+	@Override
+	public List<HoleService> getHoles() {
+		return delegate.getHoles();
+	}
+	
+	public void addNewHole(HoleService h) {
+		delegate.addNewHole(h);
+	}
+
+	public Item getKey() {
+		return delegate.getKey();
+	}
+
+	@Override
+	public void reset() {
+		delegate.reset();
+	}
+
+	public GameState getGameState() {
+		return delegate.getGameState();
+	}
+
+	public void initFirstMap() {
+		delegate.initFirstMap();
+	}
+	
+	
 }

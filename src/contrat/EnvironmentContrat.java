@@ -19,7 +19,7 @@ public class EnvironmentContrat extends EnvironmentDecorator{
        // 			forall Character c1, c2 in cellContent(x,y),
        // 				 c1 = c2
 		
-		for(int x = 0; x < getWidth(); x++)
+	 /*	for(int x = 0; x < getWidth(); x++)
 			for(int y = 0; y < getHeight(); y++) {
 				Set<Content> contents = cellContent(x, y);
 				CharacterService character = null;
@@ -33,7 +33,7 @@ public class EnvironmentContrat extends EnvironmentDecorator{
 						}
 					}
 				}
-			}
+			}*/ // 
 		
        // \inv: forall (x,y) in [O, getWidth()[ x [0, getHeight()[,
        // 			cellNature(x,y) in {Cell.MTL, Cell.PLT} => cellContent(x,y) = empty
@@ -41,7 +41,7 @@ public class EnvironmentContrat extends EnvironmentDecorator{
 		for(int x = 0; x < getWidth(); x++)
 			for(int y = 0; y < getHeight(); y++) {
 				Cell cellnat = cellNature(x, y);
-				if(cellnat == Cell.MTL || cellnat == Cell.PLT) {
+				if(cellnat == Cell.MTL || cellnat == Cell.PLT || cellnat == Cell.LAD) {
 					if(! (cellContent(x, y).isEmpty())){
 						throw new InvariantError("Content present(s) dans une case non libre (MTL ou PLT)");
 					}
@@ -50,8 +50,8 @@ public class EnvironmentContrat extends EnvironmentDecorator{
 		
        // \inv: forall (x,y) in [O, getWidth()[ x [0, getHeight()[,
        // 				exist Treasure t in cellContent(x,y)
-       // 					=> (cellNature(x,y) = Cell.EMP &&
-       // 						cellNature(x,y-1) in {Cell.PLT, Cell.MTL})
+       // 					=> (cellNature(x,y) in {Cell.EMP, Cell.HDR, Cell.LAD} &&
+       // 						cellNature(x,y-1) in {Cell.PLT, Cell.MTL, Cell.LAD})
 
 		//Treasure TODO
 		

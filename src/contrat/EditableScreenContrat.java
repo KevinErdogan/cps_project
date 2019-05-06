@@ -47,7 +47,7 @@ public class EditableScreenContrat extends EditableScreenDecorator{
 			throw new PreconditionError("Init Editablescreen avec taille(s) negative(s)");
 		}
 		
-		checkInvariant();
+		//checkInvariant();
 		
 		super.init(h, w);
 		

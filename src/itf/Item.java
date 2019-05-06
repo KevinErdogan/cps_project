@@ -1,21 +1,15 @@
 package itf;
 
-public class Item {
-	private int x;
-	private int y;
 
-	public Item(int x, int y) {
-		super();
-		this.x = x;
-		this.y = y;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
+public interface Item {//DATA
+	
+	public int getX();
+	public int getY();
+	public boolean isOnFloor();
+	public ItemType getItemType();
+	public int getInitialX();
+	public int getInitialY();
+	public void setX(int x);
+	public void setY(int y);
+	public void setOnFloor(boolean onFloor);
 }

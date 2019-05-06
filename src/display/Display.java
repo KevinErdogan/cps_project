@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import impl.EngineImpl;
 
 import itf.EngineService;
+import itf.GameState;
 
 public class Display extends JFrame{
 
@@ -48,7 +49,7 @@ public class Display extends JFrame{
 
 	public static void main(String[] args) {
 		EngineService engine = new EngineImpl();
-		engine.initWithTxt("map1.txt");
+		engine.initFirstMap();
 		while(true){
 			engine.step();
 			try {

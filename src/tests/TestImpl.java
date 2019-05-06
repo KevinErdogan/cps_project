@@ -15,7 +15,7 @@ public class TestImpl extends AbstractLoadRunnerTest{
 	@Override
 	public void beforeTests() {
 		EngineService engine = new EngineImpl();
-		engine.initWithTxt("map1.txt");
+		engine.initMap1();
 		setPlayer(engine.getPlayer());
 		setEnvi(engine.getEnvi());
 		setEngine(engine);
