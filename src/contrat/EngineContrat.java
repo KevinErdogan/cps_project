@@ -4,9 +4,9 @@ import java.util.Set;
 
 import Decorator.EngineDecorator;
 import itf.CharacterService;
+import itf.Command;
 import itf.EngineService;
 import itf.EnvironmentService;
-import itf.Move;
 import itf.PlayerService;
 
 public class EngineContrat extends EngineDecorator{
@@ -38,7 +38,7 @@ public class EngineContrat extends EngineDecorator{
 	}
 
 	@Override
-	public void addCommand(Move m) {
+	public void addCommand(Command m) {
 		
 		super.addCommand(m);
 		

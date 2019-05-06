@@ -11,9 +11,10 @@ import java.util.Set;
 import display.Display;
 import itf.Cell;
 import itf.CharacterService;
+import itf.Command;
+import itf.EditableScreenService;
 import itf.EngineService;
 import itf.EnvironmentService;
-import itf.Move;
 import itf.PlayerService;
 
 public class EngineImpl implements EngineService{
@@ -21,7 +22,7 @@ public class EngineImpl implements EngineService{
 	private PlayerService player;
 	private Set<CharacterService> guards;//remplacer plus tard par GuardService
 	private Display display;
-	private ArrayList<Move> commands;
+	private ArrayList<Command> commands;
 	private boolean displayOn = true;
 
 	public EngineImpl() {
@@ -53,15 +54,15 @@ public class EngineImpl implements EngineService{
 	}
 
 	@Override
-	public Move getNextCommand() {
+	public Command getNextCommand() {
 		if(this.commands.size() != 0) {
 			return commands.remove(commands.size()-1);
 		}
 
-		return Move.Neutral;
+		return Command.Neutral;
 	}
 
-	public void addCommand(Move m) {
+	public void addCommand(Command m) {
 		this.commands.add(m);
 	}
 
@@ -82,7 +83,7 @@ public class EngineImpl implements EngineService{
 		this.player=player;
 		this.guards=guards;
 		display = new Display(this);
-		commands = new ArrayList<Move>();
+		commands = new ArrayList<Command>();
 	}
 
 	public void initWithTxt(String file) {
@@ -96,8 +97,8 @@ public class EngineImpl implements EngineService{
 			sc = new Scanner(f);
 			int w = sc.nextInt();
 			int h = sc.nextInt();
-			EnvironmentService envs = new EnvironmentImpl();
-			envs.init(w, h);
+			EditableScreenService es = new EditableScreenImpl();
+			es.init(w,h);
 			for(int y = h-1; y >= 0; y--) {
 				for(int x = 0; x < w; x++) {
 					int cellN = sc.nextInt();
@@ -121,15 +122,18 @@ public class EngineImpl implements EngineService{
 						default:
 							System.out.println("Format fichier incorrect");
 					}
-					envs.setNature(x, y, cell);
+					es.setNature(x, y, cell);
 				}
 			}
+			
+			EnvironmentService envs = new EnvironmentImpl();
+			envs.init(es);
 
 			int nbGuards = sc.nextInt();
 			Set<CharacterService> lguards = new HashSet<CharacterService>();
 			for(int i = 0; i < nbGuards; i++) {
-				int x = sc.nextInt();
-				int y = sc.nextInt();
+				//int x = sc.nextInt();
+				//int y = sc.nextInt();
 				//GuardService guard = new GuardImpl();
 				//guard.init...
 			}
@@ -149,7 +153,7 @@ public class EngineImpl implements EngineService{
 	}
 
 	@Override
-	public List<Move> getCommands() {
+	public List<Command> getCommands() {
 		return this.commands;
 	}
 

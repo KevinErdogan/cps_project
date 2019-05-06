@@ -6,7 +6,7 @@ package itf;
  */
 public interface CharacterService {
 
-	public EnvironmentService getEnvi(); // const
+	public EnvironmentService getEnvi();
 	public int getHgt();
 	public int getWdt();
 	
@@ -26,6 +26,8 @@ public interface CharacterService {
 	 * 			not in {Cell.PLT, Cell.MTL, Cell.LAD}
 	 * 		  && not exist Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre
 	 * 			=> getWdt() == getWdt()@Pre
+	 * \post: exist Character c in getEnvi().cellContent(getWdt()@Pre-1, getHgt()@Pre)
+	 * 				=> getWdt() == getWdt()@Pre
 	 * \post: getWdt()@Pre != 0 
 	 * 		  && getEnvi().cellNature( getWdt()@Pre-1, getHgt()@Pre )@Pre
 	 * 			not in {Cell.MTL, Cell.PLT}
@@ -107,5 +109,5 @@ public interface CharacterService {
 	public void goDown();
 	
 	
-	public void step();
+	//public void step();
 }

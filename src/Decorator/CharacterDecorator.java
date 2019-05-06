@@ -50,9 +50,11 @@ public class CharacterDecorator implements CharacterService{
 		delegate.goDown();
 	}
 
+	/*
 	@Override
 	public void step() {
 		delegate.step();
 	}
+	*/
 
 }

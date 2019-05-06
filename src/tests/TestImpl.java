@@ -5,9 +5,9 @@ import org.junit.Test;
 
 import impl.EngineImpl;
 import itf.Cell;
+import itf.Command;
 import itf.EngineService;
 import itf.EnvironmentService;
-import itf.Move;
 import itf.PlayerService;
 
 public class TestImpl extends AbstractLoadRunnerTest{
@@ -28,24 +28,24 @@ public class TestImpl extends AbstractLoadRunnerTest{
 		EngineService engine = getEngine();
 		PlayerService player = getPlayer();
 		for(int i = 0; i < 12; i++) {
-			engine.addCommand(Move.Right);
+			engine.addCommand(Command.Right);
 			engine.step();
 		}
-		engine.addCommand(Move.Up);
+		engine.addCommand(Command.Up);
 		engine.step();
-		engine.addCommand(Move.Up);
+		engine.addCommand(Command.Up);
 		engine.step();
 		for(int i = 0; i < 12; i++) {
-			engine.addCommand(Move.Left);
+			engine.addCommand(Command.Left);
 			engine.step();
 		}
-		engine.addCommand(Move.Down);
+		engine.addCommand(Command.Down);
 		engine.step();
 		//ici le joueur est dans une case vide (HOL) et se trouve au dessus d'une case vide
 		int x = player.getWdt();
 		int y = player.getHgt();
 		
-		engine.addCommand(Move.Left);
+		engine.addCommand(Command.Left);
 		engine.step();//le jouer doit tomber au lieu d'aller a gauche
 		
 		//oracle
@@ -60,20 +60,20 @@ public class TestImpl extends AbstractLoadRunnerTest{
 		PlayerService player = getPlayer();
 		EnvironmentService env = getEnvi();
 		for(int i = 0; i < 12; i++) {
-			engine.addCommand(Move.Right);
+			engine.addCommand(Command.Right);
 			engine.step();
 		}
-		engine.addCommand(Move.Up);
+		engine.addCommand(Command.Up);
 		engine.step();
-		engine.addCommand(Move.Up);
+		engine.addCommand(Command.Up);
 		engine.step();
 		for(int i = 0; i < 16; i++) {
-			engine.addCommand(Move.Left);
+			engine.addCommand(Command.Left);
 			engine.step();
 		}
 		//ici le joueur est dans sur une rail (HDR) et en bas a gauche il y a une plateforme (PLT)
 		
-		engine.addCommand(Move.DigL);
+		engine.addCommand(Command.DigL);
 		engine.step();//le jouer ne doit pas pouvoir creuser
 		
 		//oracle
@@ -89,33 +89,33 @@ public class TestImpl extends AbstractLoadRunnerTest{
 		PlayerService player = getPlayer();
 		EnvironmentService env = getEnvi();
 		for(int i = 0; i < 12; i++) {
-			engine.addCommand(Move.Right);
+			engine.addCommand(Command.Right);
 			engine.step();
 		}
-		engine.addCommand(Move.Up);
+		engine.addCommand(Command.Up);
 		engine.step();
-		engine.addCommand(Move.Up);
+		engine.addCommand(Command.Up);
 		engine.step();
 
-		engine.addCommand(Move.Left);
+		engine.addCommand(Command.Left);
 		engine.step();
 		
-		engine.addCommand(Move.DigL);//creuse a gauche
-		engine.step();
-		
-		
-		engine.addCommand(Move.Left);//se deplace a gauche et se trouve au dessus du trou
+		engine.addCommand(Command.DigL);//creuse a gauche
 		engine.step();
 		
 		
+		engine.addCommand(Command.Left);//se deplace a gauche et se trouve au dessus du trou
+		engine.step();
 		
-		engine.addCommand(Move.Left);//ignore Left et tombe dans le trou
+		
+		
+		engine.addCommand(Command.Left);//ignore Left et tombe dans le trou
 		engine.step();
 		
 		int x = player.getWdt();
 		int y = player.getHgt();
 		
-		engine.addCommand(Move.Left);//tombe en dessous du trou
+		engine.addCommand(Command.Left);//tombe en dessous du trou
 		engine.step();
 		
 		//oracle

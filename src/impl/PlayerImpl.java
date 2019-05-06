@@ -1,9 +1,9 @@
 package impl;
 
 import itf.Cell;
+import itf.Command;
 import itf.EngineService;
 import itf.EnvironmentService;
-import itf.Move;
 import itf.PlayerService;
 
 public class PlayerImpl extends CharacterImpl implements PlayerService{
@@ -27,8 +27,8 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 
 	@Override
 	public void step() {
-		Move nextMove = this.engine.getNextCommand();
-
+		Command nextMove = this.engine.getNextCommand();
+		
 		if( (getEnvi().cellNature(getWdt(), getHgt()) != Cell.LAD
 				&& getEnvi().cellNature(getWdt(), getHgt()) != Cell.HDR)
 			&&
@@ -36,31 +36,31 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 				|| getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.HOL
 				|| getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.EMP)
 			&&
-			(getEnvi().hasCharacter(getWdt(), getHgt()-1) == false)
+			(getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter() == false)
 		  )
 		{//alors on tombe
 			goDown();
 		}
-		else if(nextMove == Move.Right)
+		else if(nextMove == Command.Right)
 		{
 			goRight();
 		}
-		else if(nextMove == Move.Left)
+		else if(nextMove == Command.Left)
 	    {
 			goLeft();
 		}
-		else if(nextMove == Move.Up)
+		else if(nextMove == Command.Up)
 		{
 			goUp();
 		}
-		else if(nextMove == Move.Down)
+		else if(nextMove == Command.Down)
 		{
 			goDown();
 		}
-		else if( (nextMove == Move.DigL)
+		else if( (nextMove == Command.DigL)
 				 && ( (getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.MTL
 					     || getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.PLT)
-					 || getEnvi().hasCharacter(getWdt(), getHgt()-1) == true)
+					 || getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter() == true)
 				 && ( getEnvi().cellNature( getWdt()-1, getHgt()) != Cell.MTL
 				 		 || getEnvi().cellNature( getWdt()-1, getHgt()) != Cell.PLT)
 				 && getEnvi().cellNature( getWdt()-1, getHgt()-1 ) == Cell.PLT
@@ -68,10 +68,10 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 		{
 			getEnvi().setNature(getWdt()-1, getHgt()-1, Cell.HOL);
 		}
-		else if( (nextMove == Move.DigR)
+		else if( (nextMove == Command.DigR)
 				 && ( (getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.MTL
 			            || getEnvi().cellNature( getWdt(), getHgt()-1) == Cell.PLT)
-				    || getEnvi().hasCharacter(getWdt(), getHgt()-1) == true)
+				    || getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter() == true)
 				 && ( getEnvi().cellNature( getWdt()+1, getHgt()) != Cell.MTL
 		 		        || getEnvi().cellNature( getWdt()+1, getHgt()) != Cell.PLT)
 				 && getEnvi().cellNature( getWdt()+1, getHgt()-1 ) == Cell.PLT

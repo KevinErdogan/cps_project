@@ -12,8 +12,8 @@ public interface EngineService {
 	public Set<CharacterService> getGuards();
 	//public Set<Treasure> getTreasures();
 	public Display getStatus();
-	public Move getNextCommand();
-	public List<Move> getCommands();
+	public Command getNextCommand();
+	public List<Command> getCommands();
 	
 	public void step();
 	
@@ -32,7 +32,7 @@ public interface EngineService {
 	/*
 	 * \post: getNextCommand() == m
 	 */
-	public void addCommand(Move m);
+	public void addCommand(Command m);
 	
 	public void setDisplayOn(boolean displayOn);
 }

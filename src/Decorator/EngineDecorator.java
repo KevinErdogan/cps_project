@@ -5,9 +5,9 @@ import java.util.Set;
 
 import display.Display;
 import itf.CharacterService;
+import itf.Command;
 import itf.EngineService;
 import itf.EnvironmentService;
-import itf.Move;
 import itf.PlayerService;
 
 public class EngineDecorator implements EngineService{
@@ -38,7 +38,7 @@ public class EngineDecorator implements EngineService{
 	}
 
 	@Override
-	public Move getNextCommand() {
+	public Command getNextCommand() {
 		return delegate.getNextCommand();
 	}
 
@@ -58,12 +58,12 @@ public class EngineDecorator implements EngineService{
 	}
 
 	@Override
-	public void addCommand(Move m) {
+	public void addCommand(Command m) {
 		delegate.addCommand(m);
 	}
 
 	@Override
-	public List<Move> getCommands() {
+	public List<Command> getCommands() {
 		return delegate.getCommands();
 	}
 

@@ -1,12 +1,15 @@
 package contrat;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import Decorator.EnvironmentDecorator;
 import itf.Cell;
 import itf.CharacterService;
 import itf.Content;
+import itf.EditableScreenService;
 import itf.EnvironmentService;
+import itf.Item;
+import itf.Item.ItemType;
 
 public class EnvironmentContrat extends EnvironmentDecorator{
 	
@@ -21,17 +24,11 @@ public class EnvironmentContrat extends EnvironmentDecorator{
 		
 		for(int x = 0; x < getWidth(); x++)
 			for(int y = 0; y < getHeight(); y++) {
-				Set<Content> contents = cellContent(x, y);
-				CharacterService character = null;
-				for(Content c : contents) {
-					if(c.isCharacter() && character == null) {
-						character = c.getCharacter();
-					}
-					else if(c.isCharacter() && character != null) {
-						if(! (c == character)) {
-							throw new InvariantError("2 Character presents sur la meme cellule");
-						}
-					}
+				Content content = cellContent(x, y);
+				if(content.isCharacter()) {
+					ArrayList<CharacterService> characters = content.getCharacters();
+					if(characters.size() >= 2)	
+						throw new InvariantError(characters.size()+" Characters presents sur la meme cellule");
 				}
 			}
 		
@@ -53,29 +50,45 @@ public class EnvironmentContrat extends EnvironmentDecorator{
        // 					=> (cellNature(x,y) = Cell.EMP &&
        // 						cellNature(x,y-1) in {Cell.PLT, Cell.MTL})
 
-		//Treasure TODO
+		for(int x = 0; x < getWidth(); x++)
+			for(int y = 0; y < getHeight(); y++) {
+				Content content = cellContent(x,y);
+				ArrayList<Item> items = content.getItems();
+				for(Item i : items) {
+					if(i.getNature() == ItemType.Treasure) {
+						if( !( cellNature(x,y)== Cell.EMP && ( cellNature(x, y-1) == Cell.PLT || cellNature(x, y-1) == Cell.MTL ) ) ) {
+							throw new InvariantError("Tresor present dans une case non vide ou au-dessus d'une case differente de PLT ou MTL.");
+						}
+					}
+				}
+			}
+	}
+
+	@Override
+	public void init(EditableScreenService e) {
+		
+		checkInvariant();
+		
+		super.init(e.getHeight(), e.getWidth());
+		
+		checkInvariant();
+		
+		/*
+		 * \post: \forall (x,y) in [0, getWidth()[ x [0, getHeight()[
+		 * 		  cellNature(x,y) = e.cellNature(x,y)
+		 */
+		
+		for(int x = 0; x < getWidth(); x++)
+			for(int y = 0; y < getHeight(); y++) {
+				if( !( cellNature(x,y) == e.cellNature(x, y) ) ) {
+					throw new PostconditionError("EnvrionmentContrat.init : la nature de la case en ("+x+","+y+") est : "+cellNature(x,y)+" alors qu'elle devrait être : "+e.cellNature(x, y));
+				}
+			}
 		
 	}
 
 	@Override
-	public void init(int h, int w) {
-		
-		//pre: 0 < h && 0 < w
-		
-		if(! ( 0 < h && 0 < w )) {
-			throw new PreconditionError("Init EnvironmentContrat avec taille(s) negative(s)");
-		}
-		
-		checkInvariant();
-		
-		super.init(h, w);
-		
-		checkInvariant();
-		
-	}
-
-	@Override
-	public Set<Content> cellContent(int x, int y) {
+	public Content cellContent(int x, int y) {
 		
 		//pre: (0 <= y && y < getHeight())
 		// 		&& ( 0 <= x && x < getWidth())
@@ -87,51 +100,12 @@ public class EnvironmentContrat extends EnvironmentDecorator{
 		
 		checkInvariant();
 		
-		Set<Content> res = super.cellContent(x, y);
+		Content res = super.cellContent(x, y);
 		
 		checkInvariant();
 		
 		return res;
 	}
-
-	@Override
-	public boolean hasCharacter(int x, int y) {
-		
-		 // \pre: (0 <= y && y < getHeight())
-		 // 		&& ( 0 <= x && x < getWidth())
-		
-		if(! (0 <= y && y < getHeight()
-				&& 0 <= x && x < getWidth()) ) {
-			throw new PreconditionError("hasCharacter sur une case en dehors des limites de la map");
-		 }
-		  
-		checkInvariant(); 
-		
-		boolean res =  super.hasCharacter(x, y);
-		
-		checkInvariant();
-		
-		Set<Content> contents = cellContent(x, y);
-		boolean testExist = false;
-		
-		for(Content c : contents) {
-			if(c.isCharacter()) {
-				testExist = true;
-				break;
-			}
-		}
-	
-		// \post: exist Character C in getEnvi().cellContent(x,y) => true
-		// \post: not exist Character C in getEnvi().cellContent(x,y) => false
-		
-		if(! (res == testExist)) {
-			throw new PostconditionError("hasCharacter ne retourne pas le bon resultat");
-		}
-
-		return res;
-	}
-	
-	
 	
 	
 }

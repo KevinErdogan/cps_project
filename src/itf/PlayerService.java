@@ -14,7 +14,7 @@ public interface PlayerService extends CharacterService{
 	 * \post: getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre )@Pre
 	 * 			not in {Cell.LAD, Cell.HDR}
 	 * 		  && getEnvi().cellNature( getWdt()@Pre, getHgt()@Pre-1 )@Pre
-	 * 		    in {Cell.HDR, Cell.HOL, Cell.EMP}
+	 * 		    not in {Cell.MTL, Cell.PLT}
 	 * 		  && not exist (Character c in getEnvi().cellContent( getWdt()@Pre, getHgt()@Pre-1 )@Pre)
 	 * 		  => goDown()@Pre
 	 * 

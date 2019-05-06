@@ -1,27 +1,50 @@
 package itf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Content {
-	private CharacterService character=null;
-	private Item item=null;
-
-	public Content(CharacterService c, Item item) {
-		this.character = c;
-		this.item = item;
+	private List<CharacterService> characters = null;
+	private List<Item> items=null;
+	
+	public Content() {
+		characters = new ArrayList<CharacterService>();
+		items = new ArrayList<Item>();
 	}
 
-	public CharacterService getCharacter() {
-		return character;
+	public void addCharacter(CharacterService c) {
+		characters.add(c);
+	}
+	
+	public void addItem(Item item) {
+		items.add(item);
+	}
+	
+	public void removeCharacter(CharacterService c) {
+		characters.remove(c);
+	}
+	
+	public void removeItem(Item item) {
+		items.remove(item);
+	}
+	
+	public ArrayList<CharacterService> getCharacters() {
+		return new ArrayList<CharacterService>(characters);
 	}
 
-	public Item getItem() {
-		return item;
+	public ArrayList<Item> getItems() {
+		return new ArrayList<Item>(items);
 	}
 
 	public boolean isCharacter() {
-		return character != null;
+		return !characters.isEmpty();
 	}
 
 	public boolean isItem() {
-		return item != null;
+		return !items.isEmpty();
+	}
+
+	public boolean isEmpty() {
+		return characters.size()==0 && items.size()==0;
 	}
 }

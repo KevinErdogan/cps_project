@@ -1,9 +1,8 @@
 package Decorator;
 
-import java.util.Set;
-
 import itf.Cell;
 import itf.Content;
+import itf.EditableScreenService;
 import itf.EnvironmentService;
 
 public class EnvironmentDecorator implements EnvironmentService{
@@ -40,7 +39,7 @@ public class EnvironmentDecorator implements EnvironmentService{
 	}
 
 	@Override
-	public Set<Content> cellContent(int x, int y) {
+	public Content cellContent(int x, int y) {
 		return delegate.cellContent(x, y);
 	}
 
@@ -49,14 +48,9 @@ public class EnvironmentDecorator implements EnvironmentService{
 		delegate.fill(x, y);
 	}
 	
-	/*@Override
+	@Override
 	public void init(EditableScreenService es) {
 		delegate.init(es);	
-	}*/
-
-	@Override
-	public boolean hasCharacter(int x, int y) {
-		return delegate.hasCharacter(x, y);
 	}
 
 	@Override
@@ -68,5 +62,4 @@ public class EnvironmentDecorator implements EnvironmentService{
 	public void setNature(int x, int y, Cell c) {
 		delegate.setNature(x, y, c);
 	}
-
 }

@@ -2,9 +2,9 @@ package contrat;
 
 import Decorator.PlayerDecorator;
 import itf.Cell;
+import itf.Command;
 import itf.EngineService;
 import itf.EnvironmentService;
-import itf.Move;
 import itf.PlayerService;
 
 public class PlayerContrat extends PlayerDecorator{
@@ -28,7 +28,7 @@ public class PlayerContrat extends PlayerDecorator{
 	@Override
 	public void step() {
 		
-		Move nextCommand_AtPre = getEngine().getCommands().get(getEngine().getCommands().size()-1);
+		Command nextCommand_AtPre = getEngine().getCommands().get(getEngine().getCommands().size()-1);
 		int hgt_atPre = getHgt();
 		int wdt_atPre = getWdt();
 		Cell cellNatWH_atPre = getEnvi().cellNature(getWdt(), getHgt());
@@ -37,7 +37,7 @@ public class PlayerContrat extends PlayerDecorator{
 		Cell cellNatWp1H_atPre = getEnvi().cellNature(getWdt()+1, getHgt());
 		Cell cellNatWp1H_1_atPre = getEnvi().cellNature(getWdt()+1, getHgt()-1);
 		Cell cellNatW_1H_1_atPre = getEnvi().cellNature(getWdt()-1, getHgt()-1);
-		boolean hasCharacWH_1_atPre = getEnvi().hasCharacter(getWdt(), getHgt()-1);
+		boolean hasCharacWH_1_atPre = getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter();
 		
 		super.step();
 		
@@ -70,7 +70,7 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 		  => goRight()@Pre
 		  
 		if(! (enchute == false
-			  && nextCommand_AtPre == Move.Right
+			  && nextCommand_AtPre == Command.Right
 			  && (getHgt() == hgt_atPre)
 			  && (getWdt() == wdt_atPre || getWdt() == wdt_atPre+1))) {
 			throw new PostconditionError("erreur deplacement joueur vers la droite");
@@ -85,7 +85,7 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 		  => goLeft()@Pre
 		 
 		if(! (enchute == false
-				  && nextCommand_AtPre == Move.Left
+				  && nextCommand_AtPre == Command.Left
 				  && (getHgt() == hgt_atPre)
 				  && (getWdt() == wdt_atPre || getWdt() == wdt_atPre-1))) {
 			throw new PostconditionError("erreur deplacement joueur vers la gauche");
@@ -100,7 +100,7 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 		  => goUp()@Pre
 		
 		if(! (enchute == false
-				  && nextCommand_AtPre == Move.Up
+				  && nextCommand_AtPre == Command.Up
 				  && (getHgt() == hgt_atPre || getHgt() == hgt_atPre+1)
 				  && (getWdt() == wdt_atPre))) {
 			throw new PostconditionError("erreur deplacement joueur vers le haut");
@@ -115,7 +115,7 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 		  => goDown()@Pre
 		
 		if(! (enchute == false
-				  && nextCommand_AtPre == Move.Down
+				  && nextCommand_AtPre == Command.Down
 				  && (getHgt() == hgt_atPre || getHgt() == hgt_atPre-1)
 				  && (getWdt() == wdt_atPre))) {
 			throw new PostconditionError("erreur deplacement joueur vers le bas");
@@ -131,7 +131,7 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 			== Cell.PLT
 		 // 		  => getEnvi().cellNature( getWdt()@Pre-1, getHgt()@Pre-1 ) == Cell.HOL
 		
-		if(! (nextCommand_AtPre == Move.DigL
+		if(! (nextCommand_AtPre == Command.DigL
 			  && ((cellNatWH_1_atPre == Cell.MTL
 			         || cellNatWH_1_atPre == Cell.PLT)
 			  	  || hasCharacWH_1_atPre == true)
@@ -152,7 +152,7 @@ public class PlayerContrat extends PlayerDecorator{
 		 // 			== Cell.PLT
 		 // 		  => getEnvi().cellNature( getWdt()@Pre+1, getHgt()@Pre-1 ) == Cell.HOL
 		
-		if(! (nextCommand_AtPre == Move.DigR
+		if(! (nextCommand_AtPre == Command.DigR
 				  && ((cellNatWH_1_atPre == Cell.MTL
 				         || cellNatWH_1_atPre == Cell.PLT)
 				  	  || hasCharacWH_1_atPre == true)

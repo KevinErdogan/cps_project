@@ -1,7 +1,5 @@
 package itf;
 
-import java.util.Set;
-
 /**
  * \inv: forall (x,y) in [O, getWidth()[ x [0, getHeight()[,
  * 			forall Character c1, c2 in cellContent(x,y),
@@ -19,13 +17,14 @@ public interface EnvironmentService extends EditableScreenService{
 	 * \pre: (0 <= y && y < getHeight())
 	 * 		&& ( 0 <= x && x < getWidth())
 	 */
-	public Set<Content> cellContent(int x, int y);
+	public Content cellContent(int x, int y);
 	
 	
 	/*
-	 * \pre: 0 < h && 0 < w
+	 * \post: \forall (x,y) in [0, getWidth()[ x [0, getHeight()[
+	 * 		  cellNature(x,y) = e.cellNature(x,y)
 	 */
-	public void init(int w, int h);
+	public void init(EditableScreenService e);
 	
 	
 	/*
@@ -35,7 +34,7 @@ public interface EnvironmentService extends EditableScreenService{
 	 * \post: exist Character C in getEnvi().cellContent(x,y) => true
 	 * 
 	 * \post: not exist Character C in getEnvi().cellContent(x,y) => false
-	 */
+	 
 	public boolean hasCharacter(int x, int y);
-	
+	*/
 }

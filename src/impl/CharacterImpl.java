@@ -46,9 +46,9 @@ public class CharacterImpl implements CharacterService{
 			&& (getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.PLT
 			    && getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.MTL
 			    && getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.LAD)
-			&& (getEnvi().hasCharacter(getWdt(), getHgt()) == false))
+			&& (getEnvi().cellContent(getWdt(), getHgt()).isCharacter()) == false)
 			return;
-
+		
 		if( getWdt() != 0
 			&& ( getEnvi().cellNature( getWdt()-1, getHgt()) != Cell.MTL
 					&& getEnvi().cellNature( getWdt()-1, getHgt()) != Cell.PLT)
@@ -59,8 +59,8 @@ public class CharacterImpl implements CharacterService{
 			  	    || getEnvi().cellNature( getWdt(), getHgt()-1 ) == Cell.MTL
 			  	    || getEnvi().cellNature( getWdt(), getHgt()-1 ) == Cell.LAD)
 				 ||
-				 getEnvi().hasCharacter(getWdt(), getHgt()-1) == true)
-			&& getEnvi().hasCharacter(getWdt()-1, getHgt()) == false
+				 getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter() == true)
+			&& getEnvi().cellContent(getWdt()-1, getHgt()).isCharacter() == false
 		   )
 		{
 			this.wdt = this.wdt -1;
@@ -82,7 +82,7 @@ public class CharacterImpl implements CharacterService{
 			&& (getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.PLT
 			    && getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.MTL
 			    && getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.LAD)
-			&& (getEnvi().hasCharacter(getWdt(), getHgt()) == false))
+			&& (getEnvi().cellContent(getWdt(), getHgt()).isCharacter() == false))
 			return;
 
 		if( getWdt() != (getEnvi().getWidth()-1)
@@ -95,8 +95,8 @@ public class CharacterImpl implements CharacterService{
 		  	         || getEnvi().cellNature( getWdt(), getHgt()-1 ) == Cell.MTL
 		  	         || getEnvi().cellNature( getWdt(), getHgt()-1 ) == Cell.LAD)
 			     ||
-			      getEnvi().hasCharacter(getWdt(), getHgt()-1) == true)
-		    && getEnvi().hasCharacter(getWdt()+1, getHgt()) == false)
+			      getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter() == true)
+		    && getEnvi().cellContent(getWdt()+1, getHgt()).isCharacter() == false)
 		{
 			this.wdt = this.wdt + 1;
 		}
@@ -111,7 +111,7 @@ public class CharacterImpl implements CharacterService{
 			    && getEnvi().cellNature(getWdt(), getHgt()+1) != Cell.LAD
     			&& getEnvi().cellNature(getWdt(), getHgt()+1) != Cell.HDR
 				&& getEnvi().cellNature(getWdt(), getHgt()+1) != Cell.EMP)
-    		|| getEnvi().hasCharacter(getWdt(), getHgt()+1) == true)
+    		|| getEnvi().cellContent(getWdt(), getHgt()+1).isCharacter() == true)
 			return;
 
 		if(getEnvi().cellNature(getWdt(), getHgt()) == Cell.LAD
@@ -119,7 +119,7 @@ public class CharacterImpl implements CharacterService{
 			    || getEnvi().cellNature(getWdt(), getHgt()+1) == Cell.LAD
     			|| getEnvi().cellNature(getWdt(), getHgt()+1) == Cell.HDR
 				|| getEnvi().cellNature(getWdt(), getHgt()+1) == Cell.EMP)
-			&& getEnvi().hasCharacter(getWdt(), getHgt()+1) == false)
+			&& getEnvi().cellContent(getWdt(), getHgt()+1).isCharacter() == false)
 		{
 			this.hgt = this.hgt +1;
 		}
@@ -133,24 +133,27 @@ public class CharacterImpl implements CharacterService{
 			  && getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.LAD
 			  && getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.HDR
 			  && getEnvi().cellNature(getWdt(), getHgt()-1) != Cell.EMP)
-			|| getEnvi().hasCharacter(getWdt(), getHgt()-1) == true)
+			|| getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter() == true)
 			return;
 
 		if( (getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.HOL
 			  || getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.LAD
     	      || getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.HDR
 		      || getEnvi().cellNature(getWdt(), getHgt()-1) == Cell.EMP)
-			&& getEnvi().hasCharacter(getWdt(), getHgt()-1) == false)
+			&& getEnvi().cellContent(getWdt(), getHgt()-1).isCharacter() == false)
 		{
 			this.hgt = this.hgt -1;
 		}
 	}
 
+	
+	/*
 	@Override
 	public void step() {
 		//nothing todo
 	}
-
+*/
+	
 	@Override
 	public EnvironmentService getEnvi() {
 		return this.screen;
