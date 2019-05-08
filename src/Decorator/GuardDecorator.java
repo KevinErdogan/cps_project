@@ -11,6 +11,11 @@ public class GuardDecorator extends CharacterDecorator implements GuardService{
 	
 	protected GuardDecorator(GuardService delegate) {
 		super(delegate);
+		this.delegate = delegate;
+	}
+
+	public GuardService getDelegate() {
+		return delegate;
 	}
 
 	public int getId() {

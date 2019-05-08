@@ -11,8 +11,8 @@ public class EditableScreenImpl extends ScreenImpl implements EditableScreenServ
 
 	@Override
 	public boolean isPlayable() {
-		for(int i = 0; i < this.height; i++)
-			for(int j = 0; j < this.width; j++) {
+		for(int i = 0; i < this.width; i++)
+			for(int j = 0; j < this.height; j++) {
 				if(cellNature(i, j) == Cell.HOL) {
 					return false;
 				}

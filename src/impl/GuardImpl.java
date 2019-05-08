@@ -31,6 +31,7 @@ public class GuardImpl extends CharacterImpl implements GuardService{
 		this.id = id;
 		this.timeInHole = 0;
 		this.myItem = null;
+		screen.getIn(this, x, y);
 	}
 	
 	
@@ -162,7 +163,7 @@ public class GuardImpl extends CharacterImpl implements GuardService{
 		
 		if(getWdt() != 0
 			&& (getEnvi().cellNature(getWdt()-1, getHgt()+1) != Cell.PLT
-				|| getEnvi().cellNature(getWdt()-1, getHgt()+1) != Cell.MTL)){
+				&& getEnvi().cellNature(getWdt()-1, getHgt()+1) != Cell.MTL)){
 			getEnvi().getOut(this, wdt, hgt);
 			this.wdt = getWdt() -1;
 			this.hgt = getHgt() +1;
@@ -180,11 +181,11 @@ public class GuardImpl extends CharacterImpl implements GuardService{
 		
 		if(getWdt() != getEnvi().getWidth()-1
 				&& (getEnvi().cellNature(getWdt()+1, getHgt()+1) != Cell.PLT
-					|| getEnvi().cellNature(getWdt()+1, getHgt()+1) != Cell.MTL)){
+					&& getEnvi().cellNature(getWdt()+1, getHgt()+1) != Cell.MTL)){
 				getEnvi().getOut(this, wdt, hgt);
 				this.wdt = getWdt() +1;
 				this.hgt = getHgt() +1;
-				getEnvi().getOut(this, wdt, hgt);
+				getEnvi().getIn(this, wdt, hgt);
 				this.timeInHole = 0;
 		}
 	}

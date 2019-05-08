@@ -12,20 +12,20 @@ import itf.ItemType;
 
 public class EnvironmentContrat extends EnvironmentDecorator{
 	
-	protected EnvironmentContrat(EnvironmentService service) {
+	public EnvironmentContrat(EnvironmentService service) {
 		super(service);
 	}
 
 	public void checkInvariant() {
        // \inv: forall (x,y) in [O, getWidth()[ x [0, getHeight()[,
-       // 			cellNature(x,y) in {Cell.MTL, Cell.PLT, Cell.LAD} => cellContent(x,y) = empty
-		
+       // 			cellNature(x,y) in {Cell.MTL, Cell.PLT} => cellContent(x,y) = empty
+
 		for(int x = 0; x < getWidth(); x++)
 			for(int y = 0; y < getHeight(); y++) {
 				Cell cellnat = cellNature(x, y);
-				if(cellnat == Cell.MTL || cellnat == Cell.PLT || cellnat == Cell.LAD) {
+				if(cellnat == Cell.MTL || cellnat == Cell.PLT) {
 					if(! (cellContent(x, y).isEmpty())){
-						throw new InvariantError("Content present(s) dans une case non libre (MTL ou PLT ou LAD)");
+						throw new InvariantError("Content present(s) dans une case non libre (MTL ou PLT)");
 					}
 				}
 			}

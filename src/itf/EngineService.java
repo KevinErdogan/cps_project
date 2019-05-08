@@ -16,6 +16,9 @@ public interface EngineService {
 	public Move getNextCommand();
 	public List<Move> getCommands();
 	public List<HoleService> getHoles();
+	public int getScore();
+	public int doorX();
+	public int doorY();
 	
 	/*
 	 * TODO spec sur les trous t == 15 -> fill le trou et le trou n'existe plus dans getHoles

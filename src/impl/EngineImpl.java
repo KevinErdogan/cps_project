@@ -227,8 +227,14 @@ public class EngineImpl implements EngineService{
 		this.gameState = GameState.PLAYING;
 		this.es=es;
 		this.player=player;	
+		this.es.getIn(player, player.getWdt(), player.getHgt());
 		this.guards=guards;
-		display = new Display(this);
+		
+		if(displayOn) {
+			display = new Display(this);
+		}else {
+			display = null;
+		}
 		commands = new ArrayList<Move>();
 		holes = new ArrayList<HoleService>();
 		this.treasures = treasures;
@@ -586,6 +592,21 @@ public class EngineImpl implements EngineService{
 
 	public GameState getGameState() {
 		return gameState;
+	}
+
+	@Override
+	public int getScore() {
+		return this.gameScore;
+	}
+
+	@Override
+	public int doorX() {
+		return doorX;
+	}
+
+	@Override
+	public int doorY() {
+		return doorY;
 	}
 
 	

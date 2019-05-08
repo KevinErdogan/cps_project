@@ -6,7 +6,7 @@ import itf.EditableScreenService;
 
 public class EditableScreenContrat extends EditableScreenDecorator{
 	
-	protected EditableScreenContrat(EditableScreenService service) {
+	public EditableScreenContrat(EditableScreenService service) {
 		super(service);
 	}
 

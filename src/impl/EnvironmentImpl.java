@@ -8,7 +8,6 @@ import itf.Content;
 import itf.EditableScreenService;
 import itf.EnvironmentService;
 import itf.Item;
-import itf.ItemType;
 
 public class EnvironmentImpl extends EditableScreenImpl implements EnvironmentService{
 

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import display.Display;
-import itf.CharacterService;
 import itf.EngineService;
 import itf.EnvironmentService;
 import itf.GameState;
@@ -118,6 +117,18 @@ public class EngineDecorator implements EngineService{
 
 	public void initFirstMap() {
 		delegate.initFirstMap();
+	}
+
+	public int getScore() {
+		return delegate.getScore();
+	}
+
+	public int doorX() {
+		return delegate.doorX();
+	}
+
+	public int doorY() {
+		return delegate.doorY();
 	}
 	
 	

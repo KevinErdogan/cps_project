@@ -125,7 +125,7 @@ public interface PlayerService extends CharacterService{
 	
 	/*
 	 * \pre: hasKey() == true
-	 * \post: hasKey() == true
+	 * \post: hasKey() == false
 	 */
 	public Item getKey();
 	

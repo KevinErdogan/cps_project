@@ -30,6 +30,7 @@ public class PlayerImpl extends CharacterImpl implements PlayerService{
 		this.engine = engS;
 		this.nbTreasure = 0;
 		this.hp = 3;
+		this.getEnvi().getIn(this, w, h);
 	}
 
 	@Override
