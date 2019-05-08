@@ -108,7 +108,7 @@ public class EngineImpl implements EngineService{
 			Item t = getEnvi().getItem(player.getWdt(), player.getHgt());
 			getEnvi().getOut(t, t.getX(), t.getY());
 			t.setOnFloor(false);
-			if(t.getItemType() == ItemType.Tresure){
+			if(t.getItemType() == ItemType.Treasure){
 				player.pickUpTreasure();
 				if(player.getNbTreasure() == treasures.size()) {
 					key.setOnFloor(true);
@@ -295,7 +295,7 @@ public class EngineImpl implements EngineService{
 		for(int i = 0; i < nbTreasure; i++) {
 			x = maps.treasureMap1.get(i).getX();
 			y = maps.treasureMap1.get(i).getY();
-			Item treasure = new ItemImpl(x, y, ItemType.Tresure, true);
+			Item treasure = new ItemImpl(x, y, ItemType.Treasure, true);
 			treasures.add(treasure);
 		}
 		
@@ -376,7 +376,7 @@ public class EngineImpl implements EngineService{
 		for(int i = 0; i < nbTreasure; i++) {
 			x = maps.treasureMap1.get(i).getX();
 			y = maps.treasureMap1.get(i).getY();
-			Item treasure = new ItemImpl(x, y, ItemType.Tresure, true);
+			Item treasure = new ItemImpl(x, y, ItemType.Treasure, true);
 			getEnvi().getIn(treasure, x, y);
 			treasures.add(treasure);
 		}
@@ -457,7 +457,7 @@ public class EngineImpl implements EngineService{
 		for(int i = 0; i < nbTreasure; i++) {
 			x = maps.treasureMap2.get(i).getX();
 			y = maps.treasureMap2.get(i).getY();
-			Item treasure = new ItemImpl(x, y, ItemType.Tresure, true);
+			Item treasure = new ItemImpl(x, y, ItemType.Treasure, true);
 			getEnvi().getIn(treasure, x, y);
 			treasures.add(treasure);
 		}
@@ -538,7 +538,7 @@ public class EngineImpl implements EngineService{
 		for(int i = 0; i < nbTreasure; i++) {
 			x = maps.treasureMap3.get(i).getX();
 			y = maps.treasureMap3.get(i).getY();
-			Item treasure = new ItemImpl(x, y, ItemType.Tresure, true);
+			Item treasure = new ItemImpl(x, y, ItemType.Treasure, true);
 			getEnvi().getIn(treasure, x, y);
 			treasures.add(treasure);
 		}

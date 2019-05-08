@@ -4,7 +4,7 @@ import java.util.Set;
 
 /**
  * \inv: forall (x,y) in [O, getWidth()[ x [0, getHeight()[,
- * 			cellNature(x,y) in {Cell.MTL, Cell.PLT} => cellContent(x,y) = empty
+ * 			cellNature(x,y) in {Cell.MTL, Cell.PLT, Cell.LAD} => cellContent(x,y) = empty
  * \inv: forall (x,y) in [O, getWidth()[ x [0, getHeight()[,
  * 				exist Item i in cellContent(x,y)
  * 					=> (cellNature(x,y) in {Cell.EMP}

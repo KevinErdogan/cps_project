@@ -16,31 +16,32 @@ public class MyKeyListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		switch(e.getKeyCode()) {
-			case KeyEvent.VK_Z:
-				engine.addCommand(Move.Up);
-			break;
-			case KeyEvent.VK_S:
-				engine.addCommand(Move.Down);
-			break;
-			case KeyEvent.VK_Q:
-				engine.addCommand(Move.Left);
-			break;
-			case KeyEvent.VK_D:
-				engine.addCommand(Move.Right);
-			break;
-			case KeyEvent.VK_A:
-				engine.addCommand(Move.DigL);
-			break;
-			case KeyEvent.VK_E:
-				engine.addCommand(Move.DigR);
-			break;
-		default:
-		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {}
+	public void keyReleased(KeyEvent e) {
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_Z:
+			engine.addCommand(Move.Up);
+		break;
+		case KeyEvent.VK_S:
+			engine.addCommand(Move.Down);
+		break;
+		case KeyEvent.VK_Q:
+			engine.addCommand(Move.Left);
+		break;
+		case KeyEvent.VK_D:
+			engine.addCommand(Move.Right);
+		break;
+		case KeyEvent.VK_A:
+			engine.addCommand(Move.DigL);
+		break;
+		case KeyEvent.VK_E:
+			engine.addCommand(Move.DigR);
+		break;
+	default:
+	}
+	}
 	@Override
 	public void keyTyped(KeyEvent arg0) {}
 }

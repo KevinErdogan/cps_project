@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import impl.EngineImpl;
 
 import itf.EngineService;
-import itf.GameState;
 
 public class Display extends JFrame{
 

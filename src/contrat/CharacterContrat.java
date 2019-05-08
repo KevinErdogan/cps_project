@@ -1,6 +1,7 @@
 package contrat;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import Decorator.CharacterDecorator;
 import itf.Cell;
@@ -18,17 +19,18 @@ public class CharacterContrat extends CharacterDecorator{
 		
 		 // \inv: getEnvi().cellNature(getWdt(), getHgt())
 		 // 			in {Cell.EMP, Cell.HOL, Cell.LAD, Cell.HDR, Cell.DOR}
-		//exist Character x in getEnvi().cellContent(getWdt(), getHgt()) => x = this
-		 
-		if(! (getEnvi().cellNature(getWdt(), getHgt()) == Cell.EMP
-				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.HOL
-				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.LAD
-				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.HDR
-				|| getEnvi().cellNature(getWdt(), getHgt()) == Cell.DOR)) 
+		Cell charCell = getEnvi().cellNature(getWdt(), getHgt());
+		if(! ( charCell == Cell.EMP
+				|| charCell == Cell.HOL
+				|| charCell == Cell.LAD
+				|| charCell == Cell.HDR
+				|| charCell == Cell.DOR) ) 
 		{
 			throw new InvariantError("Le Character n'est pas dans une case libre (vide, trou, echelle ou rail)");
 		}
 		
+		// getEnvi().cellContent(getWdt(), getHgt()) contains this
+
 		if(getEnvi().hasCharacter(getWdt(), getHgt())) {
 			HashSet<Content> content = (HashSet<Content>) getEnvi().cellContent(getWdt(), getHgt());
 			boolean found = false;
@@ -345,5 +347,124 @@ public class CharacterContrat extends CharacterDecorator{
 				&& getHgt() == hgt_atPre-1) ){
 			throw new PostconditionError("Deplacement en bas non effectue");	
 		}
+	}
+	
+	@Override
+	public void die() {
+		// no pre
+		
+		checkInvariant();
+		
+		super.die();
+		
+		checkInvariant();
+		
+		// \post: getWdt()= getInitialWdt() && getHgt() = getInitialHgt()
+		if( !(getWdt()== getInitialWdt() && getHgt() == getInitialHgt()) )
+			throw new PostconditionError("die : pos reset error");
+		// \post: getEnvi().cellContent(getInitialWdt(), getInitialHgt()) contains this
+		
+		Set<Content> contents = getEnvi().cellContent(getInitialWdt(), getInitialHgt());
+		boolean contain = false;
+		
+		for(Content c : contents) {
+			if(c.isCharacter() && c.getCharacter() == this) {
+				contain = true;
+				break;
+			}
+		}
+		
+		if( !( contain ) )
+			throw new PostconditionError("die : reset cell does not contains this character");
+	}
+	
+	@Override
+	public void setXandInitialX(int x) {
+		// \pre: x >= 0 && x < getEnvi().getWidth()
+		if( ! (x >= 0 && x < getEnvi().getWidth()))
+			throw new PreconditionError("setXandInitialX : x not in range of env");
+		
+		// captures
+		int x_atPre = getWdt();
+		
+		checkInvariant();
+		
+		super.setXandInitialX(x);
+	
+		checkInvariant();
+		
+		// \post: getWdt() == x && getInitialWdt() == x
+		if ( ! ( getWdt() == x && getInitialWdt() == x ) )
+			throw new PostconditionError("setXandInitialX : wdt or initialwdt not changed");
+		
+		// \post: getEnvi().cellContent(getWdt()@Pre, getHgt()) not contains this 
+		//		 && getEnvi().cellContent(x, getHgt()) contains this 
+		
+		Set<Content> before = getEnvi().cellContent(x_atPre, getHgt());
+		Set<Content> after = getEnvi().cellContent(x, getHgt());
+		boolean containBefore = false, containAfter=false;
+		
+		for(Content c : before) {
+			if(c.isCharacter() && c.getCharacter() == this) {
+				containBefore = true;
+				break;
+			}
+		}
+		
+		for(Content c : after) {
+			if(c.isCharacter() && c.getCharacter() == this) {
+				containAfter = true;
+				break;
+			}
+		}
+		
+		if(!( !containBefore && containAfter ))
+			throw new PostconditionError("setXandInitialX : cellContent not properly changed");
+		
+	}
+	
+	@Override
+	public void setYandInitialY(int y) {
+		// \pre: y >= 0 && y < getEnvi().getHeight()
+		if( ! (y >= 0 && y < getEnvi().getHeight()))
+			throw new PreconditionError("setYandInitialY : y not in range of env");
+		
+		// captures
+		int y_atPre = getHgt();
+		
+		checkInvariant();
+		
+		super.setYandInitialY(y);
+	
+		checkInvariant();
+		
+		// \post: getHgt() == y && getInitialHgt() == y
+		if ( ! ( getHgt() == y && getInitialHgt() == y ) )
+			throw new PostconditionError("setYandInitialY : hgt or initialHgt not changed");
+		
+		// \post: getEnvi().cellContent(getWdt()@Pre, getHgt()) not contains this 
+		//		 && getEnvi().cellContent(x, getHgt()) contains this 
+		
+		Set<Content> before = getEnvi().cellContent(getWdt(), y_atPre);
+		Set<Content> after = getEnvi().cellContent(getWdt(), y);
+		boolean containBefore = false, containAfter=false;
+		
+		for(Content c : before) {
+			if(c.isCharacter() && c.getCharacter() == this) {
+				containBefore = true;
+				break;
+			}
+		}
+		
+		for(Content c : after) {
+			if(c.isCharacter() && c.getCharacter() == this) {
+				containAfter = true;
+				break;
+			}
+		}
+		
+		if(!( !containBefore && containAfter ))
+			throw new PostconditionError("setYandInitialY : cellContent not properly changed");
+	
 	}
 }

@@ -1,6 +1,6 @@
 package itf;
 
 public enum ItemType {
-	Tresure,
+	Treasure,
 	Key;
 }
